@@ -12,26 +12,21 @@ import com.github.welshk.eirene.data.ApplicationDataRepository
 import com.google.android.exoplayer2.ui.PlayerView
 import okhttp3.OkHttpClient
 
-class ExoPlayerPresenter : ExoPlayerContract.Presenter, ExoPlayerContract.DispatchKeyEvent {
-    private lateinit var context: Context
-    private var view: ExoPlayerView? = null
+class ExoPlayerPresenter(
+    context: Context?,
+    okHttpClient: OkHttpClient,
+    playerView: PlayerView,
+    volumeView: LinearLayout,
+    volumeText: TextView,
+    volumeIcon: ImageView,
+    progressBar: ProgressBar,
+    url: String
+) : ExoPlayerContract.Presenter, ExoPlayerContract.DispatchKeyEvent {
+    private val context: Context? = context
+    private var view: ExoPlayerView? =
+        ExoPlayerView(okHttpClient, playerView, volumeView, volumeText, volumeIcon, progressBar, this, url)
 
-    fun ExoPlayerPresenter(
-        context: Context,
-        okHttpClient: OkHttpClient,
-        playerView: PlayerView,
-        volumeView: LinearLayout,
-        volumeText: TextView,
-        volumeIcon: ImageView,
-        progressBar: ProgressBar,
-        url: String
-    ) {
-        this.context = context
-        this.view = ExoPlayerView(okHttpClient, playerView, volumeView, volumeText, volumeIcon, progressBar, this, url)
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         if (view != null) {
             view!!.onCreate(savedInstanceState)
         }

@@ -2,27 +2,29 @@ package com.github.welshk.eirene.data
 
 import android.content.Context
 
-class ApplicationDataRepository {
-    companion object {
+object ApplicationDataRepository {
 
-        @JvmStatic
-        fun setVolume(context: Context, volume: Float) {
-            SharedPreferenceManager.Instance.setVolume(context, volume)
-        }
+    @JvmStatic
+    fun setVolume(context: Context, volume: Float) {
+        val preferenceManager = SharedPreferenceManager(context)
+        preferenceManager?.volume = volume
+    }
 
-        @JvmStatic
-        fun getVolume(context: Context): Float {
-            return SharedPreferenceManager.Instance.getVolume(context)
-        }
+    @JvmStatic
+    fun getVolume(context: Context): Float {
+        val preferenceManager = SharedPreferenceManager(context)
+        return preferenceManager!!.volume
+    }
 
-        @JvmStatic
-        fun getVolumeIncrements(context: Context): Float {
-            return SharedPreferenceManager.Instance.getVolumeIncrements(context)
-        }
+    @JvmStatic
+    fun getVolumeIncrements(context: Context): Float {
+        val preferenceManager = SharedPreferenceManager(context)
+        return preferenceManager!!.volumeIncrements
+    }
 
-        @JvmStatic
-        fun setVolumeIncrements(context: Context, volumeIncrements: Float) {
-            SharedPreferenceManager.Instance.setVolumeIncrements(context, volumeIncrements)
-        }
+    @JvmStatic
+    fun setVolumeIncrements(context: Context, volumeIncrements: Float) {
+        val preferenceManager = SharedPreferenceManager(context)
+        preferenceManager?.volumeIncrements = volumeIncrements
     }
 }

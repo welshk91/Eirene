@@ -6,15 +6,15 @@ import android.view.KeyEvent
 
 class ExoPlayerContract {
     interface View {
-        fun onCreate(savedInstanceState: Bundle)
+        fun onCreate(savedInstanceState: Bundle?)
 
-        fun onStart(context: Context)
+        fun onStart(context: Context?)
 
         fun onStop()
 
         fun onPause()
 
-        fun onResume(context: Context)
+        fun onResume(context: Context?)
 
         fun onDetach()
 
@@ -24,7 +24,7 @@ class ExoPlayerContract {
     }
 
     interface Presenter {
-        fun onCreate(savedInstanceState: Bundle)
+        fun onCreate(savedInstanceState: Bundle?)
 
         fun onDestroy()
 

@@ -119,7 +119,7 @@ class ExoPlayerView(
         playWhenReady = player!!.playWhenReady
     }
 
-    override fun onCreate(savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             playWhenReady = true
             currentWindow = 0
@@ -132,9 +132,11 @@ class ExoPlayerView(
 
     }
 
-    override fun onStart(context: Context) {
+    override fun onStart(context: Context?) {
         if (Util.SDK_INT > 23) {
-            initializePlayer(context)
+            if (context != null) {
+                initializePlayer(context)
+            }
         }
     }
 
@@ -150,9 +152,11 @@ class ExoPlayerView(
         }
     }
 
-    override fun onResume(context: Context) {
+    override fun onResume(context: Context?) {
         if (Util.SDK_INT <= 23 || player == null) {
-            initializePlayer(context)
+            if (context != null) {
+                initializePlayer(context)
+            }
         }
     }
 
