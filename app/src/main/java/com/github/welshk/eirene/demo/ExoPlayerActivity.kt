@@ -45,7 +45,7 @@ class ExoPlayerActivity : AppCompatActivity(), ExoPlayerContract.DispatchKeyEven
     }
 
     override fun onDestroy() {
-        if (::presenter.isInitialized){
+        if (::presenter.isInitialized) {
             presenter?.onDestroy()
         }
 
@@ -54,45 +54,44 @@ class ExoPlayerActivity : AppCompatActivity(), ExoPlayerContract.DispatchKeyEven
 
     override fun onStart() {
         super.onStart()
-        if (::presenter.isInitialized){
+        if (::presenter.isInitialized) {
             presenter?.onStart()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        if (::presenter.isInitialized){
+        if (::presenter.isInitialized) {
             presenter?.onResume()
         }
     }
 
     override fun onPause() {
-        if (::presenter.isInitialized){
+        if (::presenter.isInitialized) {
             presenter?.onPause()
         }
         super.onPause()
     }
 
     override fun onStop() {
-        if (::presenter.isInitialized){
+        if (::presenter.isInitialized) {
             presenter?.onStop()
         }
         super.onStop()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        if (::presenter.isInitialized){
+        if (::presenter.isInitialized) {
             presenter?.onSaveInstanceState(outState)
         }
         super.onSaveInstanceState(outState)
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
-        return if (::presenter.isInitialized) {
+        return if (::presenter.isInitialized && event.keyCode != KeyEvent.KEYCODE_BACK) {
             presenter.dispatchKeyEvent(event)
         } else {
             false
         }
-        return false
     }
 }
