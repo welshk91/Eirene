@@ -91,7 +91,7 @@ class ExoPlayerActivity : AppCompatActivity(), ExoPlayerContract.DispatchKeyEven
         return if (::presenter.isInitialized && event.keyCode != KeyEvent.KEYCODE_BACK) {
             presenter.dispatchKeyEvent(event)
         } else {
-            false
+            super.dispatchKeyEvent(event)
         }
     }
 }
