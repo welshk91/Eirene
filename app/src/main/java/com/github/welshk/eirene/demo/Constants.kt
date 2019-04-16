@@ -7,15 +7,13 @@ class Constants {
         /**
          * HLS Test URLs
          * resources: http://www.encoding.com/http-live-streaming-hls/, http://walterebert.com/playground/video/hls/
+         * https://bitmovin.com/mpeg-dash-hls-examples-sample-streams/
          */
-        const val testHLS =
-            "http://d1s3yn3kxq96sy.cloudfront.net/bigbuckbunny/index.m3u8" //Might have some issues with the first few chunks
-        const val testHLS2 =
-            "http://cdnbakmi.kaltura.com/p/243342/sp/24334200/playManifest/entryId/0_uka1msg4/flavorIds/1_vqhfu6uy,1_80sohj7p/format/applehttp/protocol/http/a.m3u8" //Didnt see subtitles, even with VLC :(
-        const val testHLS3 =
-            "http://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fdevimages%2Eapple%2Ecom%2Eedgekey%2Enet%2Fstreaming%2Fexamples%2Fbipbop_16x9%2Fbipbop_16x9_variant%2Em3u8&urlhash=9soN&_t=tracking_anet"
-        const val testHLS4 = "http://walterebert.com/playground/video/hls/sintel-trailer.m3u8"
-        const val testHLS5 = "http://walterebert.com/playground/video/hls/ts/480x270.m3u8"
+        const val testHLS = "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8"
+        const val testHLS2 = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+        const val testHLS3 = "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8"
+        const val testHLS4 = "http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8"
+        const val testHLS5 = "http://www.streambox.fr/playlists/test_001/stream.m3u8"
 
 
         /**
