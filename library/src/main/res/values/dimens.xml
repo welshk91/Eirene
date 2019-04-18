@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="overscan_top">27dp</dimen>
+    <dimen name="overscan_bottom">@dimen/overscan_top</dimen>
+    <dimen name="overscan_left">48dp</dimen>
+    <dimen name="overscan_right">@dimen/overscan_left</dimen>
+
+    <dimen name="volume_icon_size">48dp</dimen>
+</resources>
