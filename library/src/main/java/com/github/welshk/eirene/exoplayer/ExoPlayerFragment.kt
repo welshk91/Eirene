@@ -99,7 +99,7 @@ abstract class ExoPlayerFragment : Fragment(), ExoPlayerContract.DispatchKeyEven
      * Default to inflating the default layout exo_player_view
      * User can override this method and provide their own view for the player
      */
-    fun getPlayerView(inflater: LayoutInflater, @Nullable container: ViewGroup?): View {
+    open fun getPlayerView(inflater: LayoutInflater, @Nullable container: ViewGroup?): View {
         return inflater.inflate(R.layout.exo_player_view, container, false)
     }
 }

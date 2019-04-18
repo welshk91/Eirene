@@ -96,7 +96,7 @@ abstract class ExoPlayerActivity : AppCompatActivity(), ExoPlayerContract.Dispat
      * Default to inflating the default layout exo_player_view
      * User can override this method and provide their own view for the player
      */
-    fun getPlayerView(savedInstanceState: Bundle?) {
+    open fun getPlayerView(savedInstanceState: Bundle?) {
         setContentView(R.layout.exo_player_fragment)
     }
 }
