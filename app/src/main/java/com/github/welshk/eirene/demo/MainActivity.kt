@@ -17,8 +17,7 @@ class MainActivity : AppCompatActivity() {
         NetworkManager.Instance.initService("http://d1s3yn3kxq96sy.cloudfront.net/")
 
         button.setOnClickListener {
-            val intent = Intent(this, ExoPlayerActivity::class.java)
-            intent.putExtra(Constants.INTENT_EXTRA_URL, Constants.testHLS)
+            val intent = Intent(this, DemoVideoActivity::class.java)
             ActivityCompat.startActivity(this, intent, null)
         }
     }

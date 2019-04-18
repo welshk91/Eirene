@@ -2,8 +2,6 @@ package com.github.welshk.eirene.demo
 
 class Constants {
     companion object {
-        const val INTENT_EXTRA_URL = "url"
-
         /**
          * HLS Test URLs
          * resources: http://www.encoding.com/http-live-streaming-hls/, http://walterebert.com/playground/video/hls/

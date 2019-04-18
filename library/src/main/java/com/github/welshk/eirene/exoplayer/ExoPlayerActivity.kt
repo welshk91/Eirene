@@ -1,47 +1,44 @@
-package com.github.welshk.eirene.demo
+package com.github.welshk.eirene.exoplayer
 
+import com.github.welshk.eirene.R
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
 import android.view.KeyEvent
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.github.welshk.eirene.demo.networking.NetworkManager
-import com.github.welshk.eirene.exoplayer.ExoPlayerContract
-import com.github.welshk.eirene.exoplayer.ExoPlayerPresenter
 import com.google.android.exoplayer2.ui.PlayerView
+import okhttp3.OkHttpClient
 
-class ExoPlayerActivity : AppCompatActivity(), ExoPlayerContract.DispatchKeyEvent {
+abstract class ExoPlayerActivity : AppCompatActivity(), ExoPlayerContract.DispatchKeyEvent {
     private lateinit var presenter: ExoPlayerPresenter
+
+    abstract fun getUrl(): String
+    abstract fun getOkHttpClient(): OkHttpClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.exo_player_fragment)
+        getPlayerView(savedInstanceState)
 
-        if (intent?.extras?.getString(Constants.INTENT_EXTRA_URL) != null) {
-            val url = intent?.extras?.getString(Constants.INTENT_EXTRA_URL)
-            val playerView: PlayerView = findViewById(R.id.player_view)
-            val volumeView: LinearLayout = findViewById(R.id.volume_layout)
-            val volumeText: TextView = findViewById(R.id.volume_text)
-            val volumeIcon: ImageView = findViewById(R.id.volume_icon)
-            val progressBar: ProgressBar = findViewById(R.id.progress)
+        val playerView: PlayerView = findViewById(R.id.player_view)
+        val volumeView: LinearLayout = findViewById(R.id.volume_layout)
+        val volumeText: TextView = findViewById(R.id.volume_text)
+        val volumeIcon: ImageView = findViewById(R.id.volume_icon)
+        val progressBar: ProgressBar = findViewById(R.id.progress)
 
-            presenter = ExoPlayerPresenter(
-                baseContext,
-                NetworkManager.Instance.getHttpClient()!!.build(),
-                playerView,
-                volumeView,
-                volumeText,
-                volumeIcon,
-                progressBar,
-                url!!
-            )
+        presenter = ExoPlayerPresenter(
+            baseContext,
+            getOkHttpClient(),
+            playerView,
+            volumeView,
+            volumeText,
+            volumeIcon,
+            progressBar,
+            getUrl()
+        )
 
-            presenter.onCreate(savedInstanceState)
-        }
+        presenter.onCreate(savedInstanceState)
     }
 
     override fun onDestroy() {
@@ -93,5 +90,13 @@ class ExoPlayerActivity : AppCompatActivity(), ExoPlayerContract.DispatchKeyEven
         } else {
             super.dispatchKeyEvent(event)
         }
+    }
+
+    /**
+     * Default to inflating the default layout exo_player_view
+     * User can override this method and provide their own view for the player
+     */
+    fun getPlayerView(savedInstanceState: Bundle?) {
+        setContentView(R.layout.exo_player_fragment)
     }
 }

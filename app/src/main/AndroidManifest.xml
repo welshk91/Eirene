@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ExoPlayerActivity"/>
+        <activity android:name=".DemoVideoActivity"/>
     </application>
 
 </manifest>
