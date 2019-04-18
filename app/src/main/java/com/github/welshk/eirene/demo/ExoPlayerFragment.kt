@@ -26,23 +26,23 @@ class ExoPlayerFragment : Fragment(), ExoPlayerContract.DispatchKeyEvent {
 
         if (arguments != null && arguments!!.getString(Constants.INTENT_EXTRA_URL) != null) {
             val url = arguments!!.getString(Constants.INTENT_EXTRA_URL)
-//            val playerView: PlayerView = videoView.findViewById(R.id.player_view)
-//            val volumeView: LinearLayout = videoView.findViewById(R.id.volume_layout)
-//            val volumeText: TextView = videoView.findViewById(R.id.volume_text)
-//            val volumeIcon: ImageView = videoView.findViewById(R.id.volume_icon)
-//            val progressBar: ProgressBar = videoView.findViewById(R.id.progress)
-//
-//            presenter = ExoPlayerPresenter(
-//                context,
-//                NetworkManager.Instance.getHttpClient()!!.build(),
-//                playerView,
-//                volumeView,
-//                volumeText,
-//                volumeIcon,
-//                progressBar,
-//                url
-//            )
-//            presenter.onCreate(savedInstanceState)
+            val playerView: PlayerView = videoView.findViewById(R.id.player_view)
+            val volumeView: LinearLayout = videoView.findViewById(R.id.volume_layout)
+            val volumeText: TextView = videoView.findViewById(R.id.volume_text)
+            val volumeIcon: ImageView = videoView.findViewById(R.id.volume_icon)
+            val progressBar: ProgressBar = videoView.findViewById(R.id.progress)
+
+            presenter = ExoPlayerPresenter(
+                context,
+                NetworkManager.Instance.getHttpClient()!!.build(),
+                playerView,
+                volumeView,
+                volumeText,
+                volumeIcon,
+                progressBar,
+                url
+            )
+            presenter.onCreate(savedInstanceState)
         }
 
         return videoView
