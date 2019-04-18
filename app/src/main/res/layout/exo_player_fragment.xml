@@ -33,12 +33,13 @@
 
         <ImageView
                 android:id="@+id/volume_icon"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="@dimen/volume_icon_size"
+                android:layout_height="@dimen/volume_icon_size"
                 android:src="@drawable/volume_up"/>
 
         <TextView
                 android:id="@+id/volume_text"
+                android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
