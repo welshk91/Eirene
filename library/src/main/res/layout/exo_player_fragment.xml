@@ -20,31 +20,11 @@
                 android:visibility="gone"/>
     </com.google.android.exoplayer2.ui.PlayerView>
 
-    <LinearLayout
+    <include
             android:id="@+id/volume_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            layout="@layout/volume_layout"
             android:layout_margin="12dp"
-            android:alpha="0"
-            android:background="#88000000"
-            android:clickable="false"
-            android:focusable="false"
-            android:orientation="horizontal">
-
-        <ImageView
-                android:id="@+id/volume_icon"
-                android:layout_width="@dimen/volume_icon_size"
-                android:layout_height="@dimen/volume_icon_size"
-                android:src="@drawable/volume_up"/>
-
-        <TextView
-                android:id="@+id/volume_text"
-                android:textColor="@android:color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:padding="6dp"
-                tools:text="85"/>
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 </FrameLayout>
