@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.content.Context
 import android.view.KeyEvent
 
-class ExoPlayerContract {
+class EireneContract {
     interface View {
         fun onCreate(savedInstanceState: Bundle?)
 

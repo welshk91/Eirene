@@ -13,10 +13,10 @@ A demo project is included in this repo under the `demo` directory
 
 ## Usage
 #### Activity
-If you're using Activities, simply extend from the `ExoPlayerActivity` class provided. 
+If you're using Activities, simply extend from the `EireneActivity` class provided. 
 You will have to provide implementations for methods detailing what URL to stream from and what OkHttpClient you are currently using in your app. The end result will look like something below:
 ```Kotlin
-class DemoVideoActivity : ExoPlayerActivity() {
+class DemoVideoActivity : EireneActivity() {
     override fun getUrl(): String {
         return Constants.testHLS2
     }
@@ -28,10 +28,10 @@ class DemoVideoActivity : ExoPlayerActivity() {
 ```
 
 #### Fragment
-If you're using Fragments, simply extend from the `ExoPlayerFragment` class provided. 
+If you're using Fragments, simply extend from the `EireneFragment` class provided. 
 You will have to provide implementations for methods detailing what URL to stream from and what OkHttpClient you are currently using in your app. The end result will look like something below:
 ```Kotlin
-class DemoVideoFragment : ExoPlayerFragment() {
+class DemoVideoFragment : EireneFragment() {
     override fun getUrl(): String {
         return Constants.testHLS
     }
@@ -43,13 +43,13 @@ class DemoVideoFragment : ExoPlayerFragment() {
 ```
 
 ## Customizations
-While `ExoPlayerActivity` and `ExoPlayerFragment` abstract classes both provide a good default template, you may want to add even more customizations to your video experience.
+While `EireneActivity` and `EireneFragment` abstract classes both provide a good default template, you may want to add even more customizations to your video experience.
 
 #### Custom Player Layout
 If you want to provide a different layout than the library's default, you can simply override the `getPlayerView` method
 
 ```Kotlin
-class DemoVideoFragment : ExoPlayerFragment() {
+class DemoVideoFragment : EireneFragment() {
 
     //abstract method implementations here...
     

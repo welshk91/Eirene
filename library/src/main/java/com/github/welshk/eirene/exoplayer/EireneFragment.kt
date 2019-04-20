@@ -16,8 +16,8 @@ import androidx.annotation.Nullable
 import com.google.android.exoplayer2.ui.PlayerView
 import okhttp3.OkHttpClient
 
-abstract class ExoPlayerFragment : Fragment(), ExoPlayerContract.DispatchKeyEvent {
-    private lateinit var presenter: ExoPlayerPresenter
+abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
+    private lateinit var presenter: EirenePresenter
 
     abstract fun getUrl(): String
     abstract fun getOkHttpClient(): OkHttpClient
@@ -32,7 +32,7 @@ abstract class ExoPlayerFragment : Fragment(), ExoPlayerContract.DispatchKeyEven
         val volumeIcon: ImageView = videoView.findViewById(R.id.volume_icon)
         val progressBar: ProgressBar = videoView.findViewById(R.id.progress)
 
-        presenter = ExoPlayerPresenter(
+        presenter = EirenePresenter(
             context,
             getOkHttpClient(),
             playerView,
@@ -100,6 +100,6 @@ abstract class ExoPlayerFragment : Fragment(), ExoPlayerContract.DispatchKeyEven
      * User can override this method and provide their own view for the player
      */
     open fun getPlayerView(inflater: LayoutInflater, @Nullable container: ViewGroup?): View {
-        return inflater.inflate(R.layout.exo_player_view, container, false)
+        return inflater.inflate(R.layout.eirene_layout, container, false)
     }
 }

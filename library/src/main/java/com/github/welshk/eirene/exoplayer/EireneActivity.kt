@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.exoplayer2.ui.PlayerView
 import okhttp3.OkHttpClient
 
-abstract class ExoPlayerActivity : AppCompatActivity(), ExoPlayerContract.DispatchKeyEvent {
-    private lateinit var presenter: ExoPlayerPresenter
+abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyEvent {
+    private lateinit var presenter: EirenePresenter
 
     abstract fun getUrl(): String
     abstract fun getOkHttpClient(): OkHttpClient
@@ -27,7 +27,7 @@ abstract class ExoPlayerActivity : AppCompatActivity(), ExoPlayerContract.Dispat
         val volumeIcon: ImageView = findViewById(R.id.volume_icon)
         val progressBar: ProgressBar = findViewById(R.id.progress)
 
-        presenter = ExoPlayerPresenter(
+        presenter = EirenePresenter(
             baseContext,
             getOkHttpClient(),
             playerView,
@@ -97,6 +97,6 @@ abstract class ExoPlayerActivity : AppCompatActivity(), ExoPlayerContract.Dispat
      * User can override this method and provide their own view for the player
      */
     open fun getPlayerView(savedInstanceState: Bundle?) {
-        setContentView(R.layout.exo_player_fragment)
+        setContentView(R.layout.eirene_layout)
     }
 }

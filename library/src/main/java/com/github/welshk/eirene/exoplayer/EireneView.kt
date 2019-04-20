@@ -26,17 +26,17 @@ import com.github.welshk.eirene.utils.VideoUtil
 import okhttp3.OkHttpClient
 
 
-class ExoPlayerView(
+class EireneView(
     okHttpClient: OkHttpClient,
     playerView: PlayerView,
     volumeView: LinearLayout,
     volumeText: TextView,
     volumeIcon: ImageView,
     progressBar: ProgressBar,
-    exoPlayerPresenter: ExoPlayerPresenter,
+    eirenePresenter: EirenePresenter,
     url: String
-) : ExoPlayerContract.View, ExoPlayerContract.DispatchKeyEvent {
-    private val presenter: ExoPlayerPresenter = exoPlayerPresenter
+) : EireneContract.View, EireneContract.DispatchKeyEvent {
+    private val presenter: EirenePresenter = eirenePresenter
 
     private val okHttpClient: OkHttpClient = okHttpClient
     private val playerView: PlayerView = playerView
@@ -82,7 +82,7 @@ class ExoPlayerView(
         player = ExoPlayerFactory.newSimpleInstance(context, trackSelector!!)
         playerView.player = player
 
-        player!!.addListener(ExoPlayerEventListener(playerView, progressBar))
+        player!!.addListener(EireneEventListener(playerView, progressBar))
         player!!.playWhenReady = shouldAutoPlay
 
 

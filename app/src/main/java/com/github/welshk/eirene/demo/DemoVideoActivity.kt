@@ -1,10 +1,10 @@
 package com.github.welshk.eirene.demo
 
 import com.github.welshk.eirene.demo.networking.NetworkManager
-import com.github.welshk.eirene.exoplayer.ExoPlayerActivity
+import com.github.welshk.eirene.exoplayer.EireneActivity
 import okhttp3.OkHttpClient
 
-class DemoVideoActivity : ExoPlayerActivity() {
+class DemoVideoActivity : EireneActivity() {
     override fun getUrl(): String {
         return Constants.testHLS2
     }

@@ -10,7 +10,7 @@ import android.widget.ProgressBar
 import com.github.welshk.eirene.utils.DeviceUtil
 
 
-class ExoPlayerEventListener(
+class EireneEventListener(
     playerView: PlayerView,
     progressBar: ProgressBar
 ) : Player.DefaultEventListener() {
