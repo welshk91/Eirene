@@ -19,7 +19,15 @@ import okhttp3.OkHttpClient
 abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
     private lateinit var presenter: EirenePresenter
 
+    /**
+     * Method for providing the URL where the video is located.
+     */
     abstract fun getUrl(): String
+
+    /**
+     * Method for providing your OkHttpClient to the library.
+     * This allows the user to configure caching, interceptors, and retrying logic.
+     */
     abstract fun getOkHttpClient(): OkHttpClient
 
     @Nullable
@@ -96,8 +104,9 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
     }
 
     /**
-     * Default to inflating the default layout exo_player_view
-     * User can override this method and provide their own view for the player
+     * Default to inflating the default layout eirene_view.xml.
+     * User can override this method and provide their own view for the player.
+     * Layout should have views with IDs player_view, volume_layout, volume_text, volume_icon, progress
      */
     open fun getPlayerView(inflater: LayoutInflater, @Nullable container: ViewGroup?): View {
         return inflater.inflate(R.layout.eirene_layout, container, false)
