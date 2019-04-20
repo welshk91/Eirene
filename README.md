@@ -43,7 +43,7 @@ If you're using Activities, simply extend from the `EireneActivity` class provid
 ```Kotlin
 class DemoVideoActivity : EireneActivity() {
     override fun getUrl(): String {
-        return Constants.testHLS2
+        return "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
     }
 
     override fun getOkHttpClient(): OkHttpClient {
@@ -57,7 +57,7 @@ If you're using Fragments, simply extend from the `EireneFragment` class provide
 ```Kotlin
 class DemoVideoFragment : EireneFragment() {
     override fun getUrl(): String {
-        return Constants.testHLS
+        return "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
     }
 
     override fun getOkHttpClient(): OkHttpClient {
