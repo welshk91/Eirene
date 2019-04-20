@@ -2,7 +2,7 @@
 <h4 align="center">Android Library</h4>
 
 <p align="center">
-  <a target="_blank" href="https://android-arsenal.com/api?level=8"><img src="https://img.shields.io/badge/API-16%2B-orange.svg"></a>
+  <a target="_blank" href="https://android-arsenal.com/api?level=16"><img src="https://img.shields.io/badge/API-16%2B-orange.svg"></a>
 </p>
 
 <p align="center">Android Library that aims to provide a simple, general purpose video player experience.
@@ -39,8 +39,7 @@ dependencies {
 
 ## Usage
 #### Activity
-If you're using Activities, simply extend from the `EireneActivity` class provided. 
-You will have to provide implementations for methods detailing what URL to stream from and what OkHttpClient you are currently using in your app. The end result will look like something below:
+If you're using Activities, simply extend from the `EireneActivity` class provided. The end result will look like something below:
 ```Kotlin
 class DemoVideoActivity : EireneActivity() {
     override fun getUrl(): String {
@@ -54,8 +53,7 @@ class DemoVideoActivity : EireneActivity() {
 ```
 
 #### Fragment
-If you're using Fragments, simply extend from the `EireneFragment` class provided. 
-You will have to provide implementations for methods detailing what URL to stream from and what OkHttpClient you are currently using in your app. The end result will look like something below:
+If you're using Fragments, simply extend from the `EireneFragment` class provided. The end result will look like something below:
 ```Kotlin
 class DemoVideoFragment : EireneFragment() {
     override fun getUrl(): String {
@@ -67,6 +65,7 @@ class DemoVideoFragment : EireneFragment() {
     }
 }
 ```
+For both methods, you will have to provide implementations for methods detailing what URL to stream from and what OkHttpClient you are currently using in your app.
 
 ## Customizations
 While `EireneActivity` and `EireneFragment` abstract classes both provide a good default template, you may want to add even more customizations to your video experience.
@@ -86,6 +85,7 @@ class DemoVideoFragment : EireneFragment() {
 ```
 
 ## Known Issues
+* Need to provide a way to play local media files
 * Need to provide a way for users to properly override lifecycle methods without interfering with video player capabilities
 * Need to provide more customization for volume (layout, disable)
 * Need to provide more customization for Key Events (Android TV remote buttons, swipes, taps)
