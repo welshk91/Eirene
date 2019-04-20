@@ -213,7 +213,7 @@ class EireneView(
 
     private fun volumeChanged() {
         volumeText.text = (FormattingUtil.volumeFormatted(player!!.volume))
-        volumeView.animate().alpha(1f).duration = Companion.VOLUME_ANIMATE_FADE_IN
+        volumeView.animate().alpha(1f).duration = VOLUME_ANIMATE_FADE_IN
         handler.removeCallbacks(fadeOutVolume)
         handler.postDelayed(fadeOutVolume, VOLUME_ANIMATE_FADE_OUT_DELAY)
     }
