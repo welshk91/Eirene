@@ -7,8 +7,8 @@ import android.preference.PreferenceManager
 
 class SharedPreferenceManager(context: Context) {
     val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    val VOLUME_KEY = "player_volume"
-    val VOLUME_INCREMENTS_KEY = "player_volume_increments"
+    private val VOLUME_KEY = "player_volume"
+    private val VOLUME_INCREMENTS_KEY = "player_volume_increments"
 
     private fun getEditor(): SharedPreferences.Editor {
         return prefs.edit()
@@ -25,19 +25,19 @@ class SharedPreferenceManager(context: Context) {
     fun getVolumeIncrementsBlah(): Float {
         var volumePreference: Int
 
-        try {
+        return try {
             volumePreference = Integer.parseInt(
                 prefs.getString(VOLUME_INCREMENTS_KEY, DEFAULT_VALUE_VOLUME_INCREMENTS)
             )
-            return volumePreference / 100f
+            volumePreference / 100f
         } catch (exception: NumberFormatException) {
             volumePreference = Integer.parseInt(DEFAULT_VALUE_VOLUME_INCREMENTS)
             volumeIncrements = (volumePreference / 100f)
-            return volumePreference / 100f
+            volumePreference / 100f
         } catch (exception: ClassCastException) {
             volumePreference = Integer.parseInt(DEFAULT_VALUE_VOLUME_INCREMENTS)
             volumeIncrements = (volumePreference / 100f)
-            return volumePreference / 100f
+            volumePreference / 100f
         }
     }
 

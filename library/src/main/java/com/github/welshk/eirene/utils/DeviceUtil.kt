@@ -11,7 +11,7 @@ import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
 
 class DeviceUtil {
     companion object {
-        var mSystemUiVisibility: Int = 0
+        private var mSystemUiVisibility: Int = 0
 
         //TODO Should check against null pointers and handle it properly
         @JvmStatic
