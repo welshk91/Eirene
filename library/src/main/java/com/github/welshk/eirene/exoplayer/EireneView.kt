@@ -27,25 +27,16 @@ import okhttp3.OkHttpClient
 
 
 class EireneView(
-    okHttpClient: OkHttpClient,
-    playerView: PlayerView,
-    volumeView: LinearLayout,
-    volumeText: TextView,
-    volumeIcon: ImageView,
-    progressBar: ProgressBar,
-    eirenePresenter: EirenePresenter,
-    url: String
+    private val okHttpClient: OkHttpClient,
+    private val playerView: PlayerView,
+    private val volumeView: LinearLayout,
+    private val volumeText: TextView,
+    private val volumeIcon: ImageView,
+    private val progressBar: ProgressBar,
+    private val presenter: EirenePresenter,
+    private val url: String
 ) : EireneContract.View, EireneContract.DispatchKeyEvent {
-    private val presenter: EirenePresenter = eirenePresenter
-
-    private val okHttpClient: OkHttpClient = okHttpClient
-    private val playerView: PlayerView = playerView
     private var player: SimpleExoPlayer? = null
-    private val volumeView: LinearLayout = volumeView
-    private val volumeText: TextView = volumeText
-    private val volumeIcon: ImageView = volumeIcon
-    private val progressBar: ProgressBar = progressBar
-    private val url: String = url
 
     private var trackSelector: DefaultTrackSelector? = null
 

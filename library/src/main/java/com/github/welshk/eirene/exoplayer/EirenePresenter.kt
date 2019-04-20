@@ -13,7 +13,7 @@ import com.google.android.exoplayer2.ui.PlayerView
 import okhttp3.OkHttpClient
 
 class EirenePresenter(
-    context: Context?,
+    private val context: Context?,
     okHttpClient: OkHttpClient,
     playerView: PlayerView,
     volumeView: LinearLayout,
@@ -22,7 +22,6 @@ class EirenePresenter(
     progressBar: ProgressBar,
     url: String
 ) : EireneContract.Presenter, EireneContract.DispatchKeyEvent {
-    private val context: Context? = context
     private var view: EireneView? =
         EireneView(okHttpClient, playerView, volumeView, volumeText, volumeIcon, progressBar, this, url)
 
