@@ -2,7 +2,7 @@
 <h4 align="center">Android Library</h4>
 
 <p align="center">
-  <a target="_blank" href="https://android-arsenal.com/api?level=8"><img src="https://img.shields.io/badge/API-21%2B-orange.svg"></a>
+  <a target="_blank" href="https://android-arsenal.com/api?level=8"><img src="https://img.shields.io/badge/API-16%2B-orange.svg"></a>
 </p>
 
 <p align="center">Android Library that aims to provide a simple, general purpose video player experience.
