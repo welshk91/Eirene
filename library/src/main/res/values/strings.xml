@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Eirene</string>
+    <string name="volume_icon_description">Volume icon</string>
 </resources>

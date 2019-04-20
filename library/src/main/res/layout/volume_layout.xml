@@ -15,7 +15,8 @@
             android:id="@+id/volume_icon"
             android:layout_width="@dimen/volume_icon_size"
             android:layout_height="@dimen/volume_icon_size"
-            android:src="@drawable/volume_up"/>
+            android:src="@drawable/volume_up"
+            android:contentDescription="@string/volume_icon_description"/>
 
     <TextView
             android:id="@+id/volume_text"
