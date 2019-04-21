@@ -26,9 +26,7 @@ class EirenePresenter(
         EireneView(okHttpClient, playerView, volumeView, volumeText, volumeIcon, progressBar, this, url)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (view != null) {
-            view!!.onCreate(savedInstanceState)
-        }
+        view?.onCreate(savedInstanceState)
     }
 
     override fun onDestroy() {
@@ -52,15 +50,15 @@ class EirenePresenter(
     }
 
     override fun onDetach() {
-        view!!.onDetach()
+        view?.onDetach()
     }
 
     override fun onAttach() {
-        view!!.onAttach()
+        view?.onAttach()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        view!!.onSaveInstanceState(outState)
+        view?.onSaveInstanceState(outState)
     }
 
     override fun saveLastKnownVolume(volume: Float) {
