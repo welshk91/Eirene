@@ -16,9 +16,15 @@ class MainActivity : AppCompatActivity() {
         //This is where we supply a test URL
         NetworkManager.Instance.initService("http://d1s3yn3kxq96sy.cloudfront.net/")
 
-        button.setOnClickListener {
+        button_activity.setOnClickListener {
             val intent = Intent(this, DemoVideoActivity::class.java)
             ActivityCompat.startActivity(this, intent, null)
+        }
+
+        button_fragment.setOnClickListener {
+            val demoVideoFragment = DemoVideoFragment()
+            supportFragmentManager.beginTransaction().replace(R.id.video_frame, demoVideoFragment).commit()
+            supportFragmentManager.executePendingTransactions()
         }
     }
 }
