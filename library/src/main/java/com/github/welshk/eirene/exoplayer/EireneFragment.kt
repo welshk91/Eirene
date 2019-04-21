@@ -56,47 +56,63 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
     }
 
     override fun onDestroy() {
-        presenter?.onDestroy()
+        if (::presenter.isInitialized) {
+            presenter?.onDestroy()
+        }
         super.onDestroy()
     }
 
     override fun onStart() {
         super.onStart()
-        presenter?.onStart()
+        if (::presenter.isInitialized) {
+            presenter?.onStart()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        presenter?.onResume()
+        if (::presenter.isInitialized) {
+            presenter?.onResume()
+        }
     }
 
     override fun onPause() {
-        presenter?.onPause()
+        if (::presenter.isInitialized) {
+            presenter?.onPause()
+        }
         super.onPause()
     }
 
     override fun onStop() {
-        presenter?.onStop()
+        if (::presenter.isInitialized) {
+            presenter?.onStop()
+        }
         super.onStop()
     }
 
     override fun onDetach() {
-        presenter?.onDetach()
+        if (::presenter.isInitialized) {
+            presenter?.onDetach()
+        }
         super.onDetach()
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        presenter?.onAttach()
+        if (::presenter.isInitialized) {
+            presenter?.onAttach()
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        presenter?.onSaveInstanceState(outState)
+        if (::presenter.isInitialized) {
+            presenter?.onSaveInstanceState(outState)
+        }
         super.onSaveInstanceState(outState)
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
-        return if (presenter != null) {
+        return if (::presenter.isInitialized && event.keyCode != KeyEvent.KEYCODE_BACK) {
             presenter.dispatchKeyEvent(event)
         } else {
             false
@@ -104,11 +120,11 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
     }
 
     /**
-     * Default to inflating the default layout eirene_view.xml.
+     * Default to inflating the default layout eirene_fragment.xml.
      * User can override this method and provide their own view for the player.
      * Layout should have views with IDs player_view, volume_layout, volume_text, volume_icon, progress
      */
     open fun getPlayerView(inflater: LayoutInflater, @Nullable container: ViewGroup?): View {
-        return inflater.inflate(R.layout.eirene_layout, container, false)
+        return inflater.inflate(R.layout.eirene_fragment, container, false)
     }
 }
