@@ -5,5 +5,6 @@
     <dimen name="overscan_left" tools:keep="@dimen/overscan_left">48dp</dimen>
     <dimen name="overscan_right" tools:keep="@dimen/overscan_right">@dimen/overscan_left</dimen>
 
+    <dimen name="volume_text_size">18sp</dimen>
     <dimen name="volume_icon_size">48dp</dimen>
 </resources>

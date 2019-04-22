@@ -1,0 +1,9 @@
+<resources>
+    <!-- Base styles -->
+
+    <style name="VolumeText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/volume_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

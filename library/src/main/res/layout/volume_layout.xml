@@ -9,7 +9,8 @@
         android:clickable="false"
         android:alpha="0"
         android:focusable="false"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:alpha="1">
 
     <ImageView
             android:id="@+id/volume_icon"
@@ -20,6 +21,7 @@
 
     <TextView
             android:id="@+id/volume_text"
+            style="@style/VolumeText"
             android:textColor="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
