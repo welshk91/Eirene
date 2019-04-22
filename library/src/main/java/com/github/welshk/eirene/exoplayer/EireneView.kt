@@ -23,11 +23,12 @@ import com.github.welshk.eirene.data.ApplicationDataRepository
 import com.github.welshk.eirene.utils.DeviceUtil
 import com.github.welshk.eirene.utils.FormattingUtil
 import com.github.welshk.eirene.utils.VideoUtil
+import com.google.android.exoplayer2.upstream.DataSource
 import okhttp3.OkHttpClient
 
 
 class EireneView(
-    private val okHttpClient: OkHttpClient,
+    private val okHttpClient: OkHttpClient?,
     private val playerView: PlayerView,
     private val volumeView: View,
     private val volumeText: TextView,
@@ -58,11 +59,17 @@ class EireneView(
 
         val bandwidthMeter = DefaultBandwidthMeter()
 
-        val mediaDataSourceFactory = VideoUtil.buildHttpDataSourceFactory(
-            okHttpClient,
-            Util.getUserAgent(context, "mediaPlayerSample"),
-            bandwidthMeter
-        )
+        var mediaDataSourceFactory: DataSource.Factory
+        if (okHttpClient != null) {
+            mediaDataSourceFactory = VideoUtil.buildHttpDataSourceFactory(
+                okHttpClient,
+                Util.getUserAgent(context, "mediaPlayerSample"),
+                bandwidthMeter
+            )
+        } else {
+            mediaDataSourceFactory =
+                VideoUtil.buildDefaultDataSourceFactory(context, Util.getUserAgent(context, "mediaPlayerSample"))
+        }
 
         val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(bandwidthMeter)
         trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)

@@ -20,12 +20,6 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
      */
     abstract fun getUri(): Uri
 
-    /**
-     * Method for providing your OkHttpClient to the library.
-     * This allows the user to configure caching, interceptors, and retrying logic.
-     */
-    abstract fun getOkHttpClient(): OkHttpClient
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getPlayerView(savedInstanceState)
@@ -99,6 +93,14 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
         } else {
             super.dispatchKeyEvent(event)
         }
+    }
+
+    /**
+     * Method for providing your OkHttpClient to the library.
+     * This allows the user to configure caching, interceptors, and retrying logic.
+     */
+    open fun getOkHttpClient(): OkHttpClient? {
+        return null
     }
 
     /**

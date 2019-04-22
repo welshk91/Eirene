@@ -45,10 +45,6 @@ class DemoVideoActivity : EireneActivity() {
     override fun getUri(): Uri {
         return Uri.parse("https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")
     }
-
-    override fun getOkHttpClient(): OkHttpClient {
-        return NetworkManager.Instance.getHttpClient()!!.build()
-    }
 }
 ```
 
@@ -59,13 +55,9 @@ class DemoVideoFragment : EireneFragment() {
     override fun getUri(): Uri {
         return Uri.parse("https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")
     }
-
-    override fun getOkHttpClient(): OkHttpClient {
-        return NetworkManager.Instance.getHttpClient()!!.build()
-    }
 }
 ```
-For both methods, you will have to provide implementations for methods detailing what URL to stream from and what OkHttpClient you are currently using in your app.
+For both methods, you will have to provide an implementation detailing what Uri to play.
 
 ## Customizations
 While `EireneActivity` and `EireneFragment` abstract classes both provide a good default template, you may want to add even more customizations to your video experience.
@@ -80,6 +72,20 @@ class DemoVideoFragment : EireneFragment() {
     
     override fun getPlayerView(inflater: LayoutInflater, @Nullable container: ViewGroup?): View {
         return inflater.inflate(R.layout.my_player_view, container, false)
+    }
+}
+```
+
+#### Custom Network Client
+Already have an awesome OkHttpClient configured with caching, interceptors, or retry logic (perhaps from [RetroFit](https://square.github.io/retrofit/) or [OkHttp](https://square.github.io/okhttp/) itself)? You can simply override the `getOkHttpClient` method to provide this for the player
+
+```Kotlin
+class DemoVideoFragment : EireneFragment() {
+
+    //abstract method implementations here...
+    
+    override fun getOkHttpClient(): OkHttpClient? {
+        return NetworkManager.Instance.getHttpClient()!!.build()
     }
 }
 ```

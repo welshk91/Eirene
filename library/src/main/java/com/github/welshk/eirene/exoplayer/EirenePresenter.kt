@@ -14,7 +14,7 @@ import okhttp3.OkHttpClient
 
 class EirenePresenter(
     private val context: Context?,
-    okHttpClient: OkHttpClient,
+    okHttpClient: OkHttpClient?,
     playerView: PlayerView,
     volumeView: View,
     volumeText: TextView,

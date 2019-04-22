@@ -25,12 +25,6 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
      */
     abstract fun getUri(): Uri
 
-    /**
-     * Method for providing your OkHttpClient to the library.
-     * This allows the user to configure caching, interceptors, and retrying logic.
-     */
-    abstract fun getOkHttpClient(): OkHttpClient
-
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
         val videoView = getPlayerView(inflater, container)
@@ -118,6 +112,14 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
         } else {
             false
         }
+    }
+
+    /**
+     * Method for providing your OkHttpClient to the library.
+     * This allows the user to configure caching, interceptors, and retrying logic.
+     */
+    open fun getOkHttpClient(): OkHttpClient? {
+        return null
     }
 
     /**
