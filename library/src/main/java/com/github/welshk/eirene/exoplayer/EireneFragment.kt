@@ -34,7 +34,7 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
         val videoView = getPlayerView(inflater, container)
 
-        val playerView: PlayerView = videoView.findViewById(R.id.player_view)
+        val playerView: PlayerView = videoView.findViewById(R.id.player_layout)
         val volumeView: LinearLayout = videoView.findViewById(R.id.volume_layout)
         val volumeText: TextView = videoView.findViewById(R.id.volume_text)
         val volumeIcon: ImageView = videoView.findViewById(R.id.volume_icon)
