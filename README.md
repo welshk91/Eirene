@@ -42,8 +42,8 @@ dependencies {
 If you're using Activities, simply extend from the `EireneActivity` class provided. The end result will look like something below:
 ```Kotlin
 class DemoVideoActivity : EireneActivity() {
-    override fun getUrl(): String {
-        return "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+    override fun getUri(): Uri {
+        return Uri.parse("https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")
     }
 
     override fun getOkHttpClient(): OkHttpClient {
@@ -56,8 +56,8 @@ class DemoVideoActivity : EireneActivity() {
 If you're using Fragments, simply extend from the `EireneFragment` class provided. The end result will look like something below:
 ```Kotlin
 class DemoVideoFragment : EireneFragment() {
-    override fun getUrl(): String {
-        return "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+    override fun getUri(): Uri {
+        return Uri.parse("https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")
     }
 
     override fun getOkHttpClient(): OkHttpClient {
