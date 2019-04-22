@@ -19,30 +19,30 @@ class VideoUtil {
          *
          */
         @JvmStatic
-        fun getVideoType(url: String): String {
+        fun getVideoType(uri: Uri): String {
             return when {
-                url.contains(".m3u8") -> Constants.Video.VIDEO_TYPE_M3U8
-                url.contains(".mpd") -> Constants.Video.VIDEO_TYPE_DASH
-                url.contains(".ism") -> Constants.Video.VIDEO_TYPE_SMOOTH_STREAMING
+                uri.path.contains(".m3u8") -> Constants.Video.VIDEO_TYPE_M3U8
+                uri.path.contains(".mpd") -> Constants.Video.VIDEO_TYPE_DASH
+                uri.path.contains(".ism") -> Constants.Video.VIDEO_TYPE_SMOOTH_STREAMING
                 else -> Constants.Video.VIDEO_TYPE_DEFAULT
             }
         }
 
         @JvmStatic
-        fun getMediaSource(mediaDataSourceFactory: DataSource.Factory, url: String): MediaSource {
-            val contentType = getVideoType(url)
+        fun getMediaSource(mediaDataSourceFactory: DataSource.Factory, uri: Uri): MediaSource {
+            val contentType = getVideoType(uri)
             val mediaSource: MediaSource
             when (contentType) {
                 Constants.Video.VIDEO_TYPE_M3U8 -> {
                     mediaSource = HlsMediaSource.Factory(mediaDataSourceFactory)
-                        .setPlaylistParserFactory(DefaultHlsPlaylistParserFactory())
-                        .createMediaSource(Uri.parse(url))
+                            .setPlaylistParserFactory(DefaultHlsPlaylistParserFactory())
+                            .createMediaSource(uri)
                     return mediaSource
                 }
 
                 Constants.Video.VIDEO_TYPE_DEFAULT -> {
                     mediaSource = ExtractorMediaSource.Factory(mediaDataSourceFactory)
-                        .createMediaSource(Uri.parse(url))
+                            .createMediaSource(uri)
                     return mediaSource
                 }
 
@@ -53,14 +53,14 @@ class VideoUtil {
 
         @JvmStatic
         fun buildHttpDataSourceFactory(
-            httpClient: OkHttpClient,
-            userAgent: String,
-            bandwidthMeter: DefaultBandwidthMeter
+                httpClient: OkHttpClient,
+                userAgent: String,
+                bandwidthMeter: DefaultBandwidthMeter
         ): HttpDataSource.Factory {
             return OkHttpDataSourceFactory(
-                httpClient,
-                userAgent,
-                bandwidthMeter
+                    httpClient,
+                    userAgent,
+                    bandwidthMeter
             )
         }
     }

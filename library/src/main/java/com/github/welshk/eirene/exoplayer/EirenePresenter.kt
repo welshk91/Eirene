@@ -1,6 +1,7 @@
 package com.github.welshk.eirene.exoplayer
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -19,10 +20,10 @@ class EirenePresenter(
     volumeText: TextView,
     volumeIcon: ImageView,
     progressBar: ProgressBar,
-    url: String
+    uri: Uri
 ) : EireneContract.Presenter, EireneContract.DispatchKeyEvent {
     private var view: EireneView? =
-        EireneView(okHttpClient, playerView, volumeView, volumeText, volumeIcon, progressBar, this, url)
+        EireneView(okHttpClient, playerView, volumeView, volumeText, volumeIcon, progressBar, this, uri)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         view?.onCreate(savedInstanceState)

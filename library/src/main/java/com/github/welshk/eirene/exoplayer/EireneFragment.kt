@@ -2,6 +2,7 @@ package com.github.welshk.eirene.exoplayer
 
 import com.github.welshk.eirene.R
 import android.content.Context
+import android.net.Uri
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.view.KeyEvent
@@ -20,9 +21,9 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
     private lateinit var presenter: EirenePresenter
 
     /**
-     * Method for providing the URL where the video is located.
+     * Method for providing the Uri where the video is located.
      */
-    abstract fun getUrl(): String
+    abstract fun getUri(): Uri
 
     /**
      * Method for providing your OkHttpClient to the library.
@@ -48,7 +49,7 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
             volumeText,
             volumeIcon,
             progressBar,
-            getUrl()
+            getUri()
         )
         presenter.onCreate(savedInstanceState)
 

@@ -1,12 +1,12 @@
 package com.github.welshk.eirene.exoplayer
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 
@@ -34,7 +34,7 @@ class EireneView(
     private val volumeIcon: ImageView,
     private val progressBar: ProgressBar,
     private val presenter: EirenePresenter,
-    private val url: String
+    private val uri: Uri
 ) : EireneContract.View, EireneContract.DispatchKeyEvent {
     private var player: SimpleExoPlayer? = null
 
@@ -68,7 +68,7 @@ class EireneView(
         trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
         disableCaptions()
 
-        val mediaSource = VideoUtil.getMediaSource(mediaDataSourceFactory, url)
+        val mediaSource = VideoUtil.getMediaSource(mediaDataSourceFactory, uri)
 
         player = ExoPlayerFactory.newSimpleInstance(context, trackSelector!!)
         playerView.player = player

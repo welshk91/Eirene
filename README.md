@@ -85,7 +85,6 @@ class DemoVideoFragment : EireneFragment() {
 ```
 
 ## Known Issues
-* Need to provide a way to play local media files
 * Need to provide a way for users to properly override lifecycle methods without interfering with video player capabilities
 * Need to provide more customization for volume (layout, disable)
 * Need to provide more customization for Key Events (Android TV remote buttons, swipes, taps)
