@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/volume_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#88000000"
-        android:clickable="false"
-        android:alpha="0"
-        android:focusable="false"
-        android:orientation="horizontal"
-        tools:alpha="1">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/volume_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:alpha="0"
+    android:background="#88000000"
+    android:clickable="false"
+    android:focusable="false"
+    android:orientation="horizontal"
+    tools:alpha="1">
 
     <ImageView
-            android:id="@+id/volume_icon"
-            android:layout_width="@dimen/volume_icon_size"
-            android:layout_height="@dimen/volume_icon_size"
-            android:src="@drawable/volume_up"
-            android:contentDescription="@string/volume_icon_description"/>
+        android:id="@+id/volume_icon"
+        android:layout_width="@dimen/volume_icon_size"
+        android:layout_height="@dimen/volume_icon_size"
+        android:contentDescription="@string/volume_icon_description"
+        android:src="@drawable/volume_up" />
 
     <TextView
-            android:id="@+id/volume_text"
-            style="@style/VolumeText"
-            android:textColor="@android:color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:padding="6dp"
-            tools:text="85"/>
+        android:id="@+id/volume_text"
+        style="@style/VolumeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:padding="6dp"
+        android:textColor="@android:color/white"
+        tools:text="85" />
 </LinearLayout>
