@@ -3,12 +3,11 @@ package com.github.welshk.eirene.exoplayer
 import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.github.welshk.eirene.data.ApplicationDataRepository
-
 import com.google.android.exoplayer2.ui.PlayerView
 import okhttp3.OkHttpClient
 
@@ -16,7 +15,7 @@ class EirenePresenter(
     private val context: Context?,
     okHttpClient: OkHttpClient,
     playerView: PlayerView,
-    volumeView: LinearLayout,
+    volumeView: View,
     volumeText: TextView,
     volumeIcon: ImageView,
     progressBar: ProgressBar,

@@ -29,7 +29,7 @@ import okhttp3.OkHttpClient
 class EireneView(
     private val okHttpClient: OkHttpClient,
     private val playerView: PlayerView,
-    private val volumeView: LinearLayout,
+    private val volumeView: View,
     private val volumeText: TextView,
     private val volumeIcon: ImageView,
     private val progressBar: ProgressBar,

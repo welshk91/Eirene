@@ -1,13 +1,13 @@
 package com.github.welshk.eirene.exoplayer
 
-import com.github.welshk.eirene.R
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.github.welshk.eirene.R
 import com.google.android.exoplayer2.ui.PlayerView
 import okhttp3.OkHttpClient
 
@@ -30,7 +30,7 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
         getPlayerView(savedInstanceState)
 
         val playerView: PlayerView = findViewById(R.id.player_layout)
-        val volumeView: LinearLayout = findViewById(R.id.volume_layout)
+        val volumeView: View = findViewById(R.id.volume_layout)
         val volumeText: TextView = findViewById(R.id.volume_text)
         val volumeIcon: ImageView = findViewById(R.id.volume_icon)
         val progressBar: ProgressBar = findViewById(R.id.progress)
