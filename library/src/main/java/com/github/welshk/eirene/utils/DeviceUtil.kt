@@ -30,7 +30,7 @@ class DeviceUtil {
                         or SYSTEM_UI_FLAG_HIDE_NAVIGATION)
             }
 
-            (context as AppCompatActivity).supportActionBar!!.hide()
+            (context as AppCompatActivity).supportActionBar?.hide()
             context.window.decorView.systemUiVisibility = mSystemUiVisibility
         }
 
@@ -40,7 +40,7 @@ class DeviceUtil {
         fun showSystemUi(context: Context) {
             mSystemUiVisibility = SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN and SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
 
-            (context as AppCompatActivity).supportActionBar!!.show()
+            (context as AppCompatActivity).supportActionBar?.show()
             context.window.decorView.systemUiVisibility = mSystemUiVisibility
         }
     }
