@@ -13,7 +13,7 @@ This library aims to ease the burden of creating video experiences. It's built o
 Unlike a pure ExoPlayer development environment, this library tries to handle much of the boiler plate code and setup. While this removes some of the configurability, the library allows for an easy, general use case out-of-the-box.
 
 ## Demo Project
-A demo project is included in this repo under the `demo` directory
+A demo project is included in this repo under the `app` directory
 
 ## How To Include
 Add the [Jitpack.io](https://jitpack.io/) repository to your project **build.gradle** under `allprojects`:
