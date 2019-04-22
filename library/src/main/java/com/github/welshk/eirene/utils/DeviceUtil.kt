@@ -13,7 +13,6 @@ class DeviceUtil {
     companion object {
         private var mSystemUiVisibility: Int = 0
 
-        //TODO Should check against null pointers and handle it properly
         @JvmStatic
         @Throws(NullPointerException::class)
         fun hideSystemUi(context: Context) {
@@ -34,7 +33,6 @@ class DeviceUtil {
             context.window.decorView.systemUiVisibility = mSystemUiVisibility
         }
 
-        //TODO Should check against null pointers and handle it properly
         @JvmStatic
         @Throws(NullPointerException::class)
         fun showSystemUi(context: Context) {
