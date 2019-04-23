@@ -4,12 +4,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.github.welshk.eirene.R
-import com.google.android.exoplayer2.ui.PlayerView
 import okhttp3.OkHttpClient
 
 abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyEvent {
@@ -24,20 +20,10 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
         super.onCreate(savedInstanceState)
         getRootView(savedInstanceState)
 
-        val playerView: PlayerView = findViewById(R.id.player_layout)
-        val volumeView: View = findViewById(R.id.volume_layout)
-        val volumeText: TextView = findViewById(R.id.volume_text)
-        val volumeIcon: ImageView = findViewById(R.id.volume_icon)
-        val progressBar: ProgressBar = findViewById(R.id.progress)
-
         presenter = EirenePresenter(
             baseContext,
             getOkHttpClient(),
-            playerView,
-            volumeView,
-            volumeText,
-            volumeIcon,
-            progressBar,
+            findViewById<View>(android.R.id.content),
             getUri(),
             isClosedCaptionEnabled()
         )

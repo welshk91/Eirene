@@ -7,14 +7,9 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import com.github.welshk.eirene.R
-import com.google.android.exoplayer2.ui.PlayerView
 import okhttp3.OkHttpClient
 
 abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
@@ -29,20 +24,10 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
         val videoView = getRootView(inflater, container)
 
-        val playerView: PlayerView = videoView.findViewById(R.id.player_layout)
-        val volumeView: LinearLayout = videoView.findViewById(R.id.volume_layout)
-        val volumeText: TextView = videoView.findViewById(R.id.volume_text)
-        val volumeIcon: ImageView = videoView.findViewById(R.id.volume_icon)
-        val progressBar: ProgressBar = videoView.findViewById(R.id.progress)
-
         presenter = EirenePresenter(
             context,
             getOkHttpClient(),
-            playerView,
-            volumeView,
-            volumeText,
-            volumeIcon,
-            progressBar,
+            videoView,
             getUri(),
             isClosedCaptionEnabled()
         )
