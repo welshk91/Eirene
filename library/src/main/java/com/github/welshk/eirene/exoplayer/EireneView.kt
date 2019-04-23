@@ -9,21 +9,20 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-
 import com.github.welshk.eirene.R
+import com.github.welshk.eirene.data.ApplicationDataRepository
+import com.github.welshk.eirene.utils.DeviceUtil
+import com.github.welshk.eirene.utils.FormattingUtil
+import com.github.welshk.eirene.utils.VideoUtil
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.util.Util
-import com.github.welshk.eirene.data.ApplicationDataRepository
-import com.github.welshk.eirene.utils.DeviceUtil
-import com.github.welshk.eirene.utils.FormattingUtil
-import com.github.welshk.eirene.utils.VideoUtil
-import com.google.android.exoplayer2.upstream.DataSource
 import okhttp3.OkHttpClient
 
 
@@ -35,7 +34,8 @@ class EireneView(
     private val volumeIcon: ImageView,
     private val progressBar: ProgressBar,
     private val presenter: EirenePresenter,
-    private val uri: Uri
+    private val uri: Uri,
+    private val isClosedCaptioningEnabled: Boolean
 ) : EireneContract.View, EireneContract.DispatchKeyEvent {
     private var player: SimpleExoPlayer? = null
 
@@ -68,7 +68,10 @@ class EireneView(
             )
         } else {
             mediaDataSourceFactory =
-                VideoUtil.buildDefaultDataSourceFactory(context, Util.getUserAgent(context, "mediaPlayerSample"))
+                VideoUtil.buildDefaultDataSourceFactory(
+                    context,
+                    Util.getUserAgent(context, "mediaPlayerSample")
+                )
         }
 
         val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(bandwidthMeter)
@@ -193,13 +196,15 @@ class EireneView(
     }
 
     private fun volumeIncrease() {
-        player!!.volume = if (player!!.volume + volumeIncrements > 1f) 1f else player!!.volume + volumeIncrements
+        player!!.volume =
+            if (player!!.volume + volumeIncrements > 1f) 1f else player!!.volume + volumeIncrements
         volumeIcon.setImageResource(R.drawable.volume_up)
         volumeChanged()
     }
 
     private fun volumeDecrease() {
-        player!!.volume = if (player!!.volume - volumeIncrements < 0f) 0f else player!!.volume - volumeIncrements
+        player!!.volume =
+            if (player!!.volume - volumeIncrements < 0f) 0f else player!!.volume - volumeIncrements
 
         if (player!!.volume == 0f) {
             volumeIcon.setImageResource(R.drawable.volume_off)

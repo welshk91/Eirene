@@ -20,10 +20,21 @@ class EirenePresenter(
     volumeText: TextView,
     volumeIcon: ImageView,
     progressBar: ProgressBar,
-    uri: Uri
+    uri: Uri,
+    isClosedCaptioningEnabled: Boolean
 ) : EireneContract.Presenter, EireneContract.DispatchKeyEvent {
     private var view: EireneView? =
-        EireneView(okHttpClient, playerView, volumeView, volumeText, volumeIcon, progressBar, this, uri)
+        EireneView(
+            okHttpClient,
+            playerView,
+            volumeView,
+            volumeText,
+            volumeIcon,
+            progressBar,
+            this,
+            uri,
+            isClosedCaptioningEnabled
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         view?.onCreate(savedInstanceState)

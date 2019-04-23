@@ -1,19 +1,19 @@
 package com.github.welshk.eirene.exoplayer
 
-import com.github.welshk.eirene.R
 import android.content.Context
 import android.net.Uri
-import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.view.KeyEvent
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.LinearLayout
-import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.annotation.Nullable
+import androidx.fragment.app.Fragment
+import com.github.welshk.eirene.R
 import com.google.android.exoplayer2.ui.PlayerView
 import okhttp3.OkHttpClient
 
@@ -43,7 +43,8 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
             volumeText,
             volumeIcon,
             progressBar,
-            getUri()
+            getUri(),
+            isClosedCaptionEnabled()
         )
         presenter.onCreate(savedInstanceState)
 
@@ -129,5 +130,9 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
      */
     open fun getPlayerView(inflater: LayoutInflater, @Nullable container: ViewGroup?): View {
         return inflater.inflate(R.layout.eirene_fragment, container, false)
+    }
+
+    open fun isClosedCaptionEnabled(): Boolean {
+        return true
     }
 }

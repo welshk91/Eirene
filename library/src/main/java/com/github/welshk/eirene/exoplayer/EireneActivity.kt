@@ -38,7 +38,8 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
             volumeText,
             volumeIcon,
             progressBar,
-            getUri()
+            getUri(),
+            isClosedCaptionEnabled()
         )
 
         presenter.onCreate(savedInstanceState)
@@ -110,5 +111,9 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
      */
     open fun getPlayerView(savedInstanceState: Bundle?) {
         setContentView(R.layout.eirene_activity)
+    }
+
+    open fun isClosedCaptionEnabled(): Boolean {
+        return true
     }
 }
