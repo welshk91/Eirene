@@ -13,7 +13,8 @@ class EirenePresenter(
     okHttpClient: OkHttpClient?,
     rootView: View,
     uri: Uri,
-    isClosedCaptioningEnabled: Boolean
+    isClosedCaptionEnabled: Boolean,
+    isClosedCaptionToggleEnabled: Boolean
 ) : EireneContract.Presenter, EireneContract.DispatchKeyEvent {
     private var view: EireneView? =
         EireneView(
@@ -21,7 +22,8 @@ class EirenePresenter(
             okHttpClient,
             rootView,
             uri,
-            isClosedCaptioningEnabled
+            isClosedCaptionEnabled,
+            isClosedCaptionToggleEnabled
         )
 
     override fun onCreate(savedInstanceState: Bundle?) {

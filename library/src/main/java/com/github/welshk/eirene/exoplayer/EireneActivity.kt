@@ -25,7 +25,8 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
             getOkHttpClient(),
             findViewById<View>(android.R.id.content),
             getUri(),
-            isClosedCaptionEnabled()
+            isClosedCaptionEnabled(),
+            isClosedCaptionToggleEnabled()
         )
 
         presenter.onCreate(savedInstanceState)
@@ -101,5 +102,9 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
 
     open fun isClosedCaptionEnabled(): Boolean {
         return true
+    }
+
+    open fun isClosedCaptionToggleEnabled(): Boolean {
+        return isClosedCaptionEnabled()
     }
 }

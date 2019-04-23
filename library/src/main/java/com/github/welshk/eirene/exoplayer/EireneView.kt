@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.KeyEvent
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -31,7 +32,8 @@ class EireneView(
     private val okHttpClient: OkHttpClient?,
     private val rootView: View,
     private val uri: Uri,
-    private val isClosedCaptioningEnabled: Boolean
+    private val isClosedCaptionEnabled: Boolean,
+    private val isClosedCaptionToggleEnabled: Boolean
 ) : EireneContract.View, EireneContract.DispatchKeyEvent {
     private var player: SimpleExoPlayer? = null
 
@@ -39,6 +41,7 @@ class EireneView(
     private val volumeView: View = rootView.findViewById(R.id.volume_layout)
     private val volumeText: TextView = rootView.findViewById(R.id.volume_text)
     private val volumeIcon: ImageView = rootView.findViewById(R.id.volume_icon)
+    private lateinit var ccButton: ImageButton
     private val progressBar: ProgressBar = rootView.findViewById(R.id.progress)
 
     private var trackSelector: DefaultTrackSelector? = null
@@ -78,7 +81,20 @@ class EireneView(
 
         val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(bandwidthMeter)
         trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
-        disableCaptions()
+
+        if (isClosedCaptionToggleEnabled) {
+            ccButton = rootView.findViewById(R.id.exo_closed_caption_button)
+            ccButton.visibility = View.VISIBLE
+            ccButton.setOnClickListener {
+                toggleCaptions()
+            }
+        }
+
+        if (isClosedCaptionEnabled) {
+            enableCaptions()
+        } else {
+            disableCaptions()
+        }
 
         val mediaSource = VideoUtil.getMediaSource(mediaDataSourceFactory, uri)
 
@@ -223,16 +239,28 @@ class EireneView(
         handler.postDelayed(fadeOutVolume, VOLUME_ANIMATE_FADE_OUT_DELAY)
     }
 
+    private fun toggleCaptions() {
+        if (trackSelector!!.parameters.getRendererDisabled(C.TRACK_TYPE_VIDEO)) {
+            enableCaptions()
+        } else {
+            disableCaptions()
+        }
+    }
+
     private fun disableCaptions() {
         trackSelector!!.parameters = DefaultTrackSelector.ParametersBuilder()
             .setRendererDisabled(C.TRACK_TYPE_VIDEO, true)
             .build()
+
+        ccButton?.alpha = .6f
     }
 
     private fun enableCaptions() {
         trackSelector!!.parameters = DefaultTrackSelector.ParametersBuilder()
             .setRendererDisabled(C.TRACK_TYPE_VIDEO, false)
             .build()
+
+        ccButton?.alpha = 1f
     }
 
     companion object {

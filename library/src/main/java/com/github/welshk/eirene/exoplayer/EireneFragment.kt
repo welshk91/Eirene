@@ -29,7 +29,8 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
             getOkHttpClient(),
             videoView,
             getUri(),
-            isClosedCaptionEnabled()
+            isClosedCaptionEnabled(),
+            isClosedCaptionToggleEnabled()
         )
         presenter.onCreate(savedInstanceState)
 
@@ -119,5 +120,9 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
 
     open fun isClosedCaptionEnabled(): Boolean {
         return true
+    }
+
+    open fun isClosedCaptionToggleEnabled(): Boolean {
+        return isClosedCaptionEnabled()
     }
 }
