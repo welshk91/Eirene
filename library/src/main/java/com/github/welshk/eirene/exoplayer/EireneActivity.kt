@@ -22,7 +22,7 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getPlayerView(savedInstanceState)
+        getRootView(savedInstanceState)
 
         val playerView: PlayerView = findViewById(R.id.player_layout)
         val volumeView: View = findViewById(R.id.volume_layout)
@@ -109,7 +109,7 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
      * User can override this method and provide their own view for the player.
      * Layout should have views with IDs player_view, volume_layout, volume_text, volume_icon, progress
      */
-    open fun getPlayerView(savedInstanceState: Bundle?) {
+    open fun getRootView(savedInstanceState: Bundle?) {
         setContentView(R.layout.eirene_activity)
     }
 

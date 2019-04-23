@@ -62,15 +62,15 @@ For both methods, you will have to provide an implementation detailing what Uri 
 ## Customizations
 While `EireneActivity` and `EireneFragment` abstract classes both provide a good default template, you may want to add even more customizations to your video experience.
 
-#### Custom Player Layout
-If you want to provide a different layout than the library's default, you can simply override the `getPlayerView` method
+#### Custom Layout
+If you want to provide a different layout than the library's default, you can simply override the `getRootView` method
 
 ```Kotlin
 class DemoVideoFragment : EireneFragment() {
 
     //abstract method implementations here...
     
-    override fun getPlayerView(inflater: LayoutInflater, @Nullable container: ViewGroup?): View {
+    override fun getRootView(inflater: LayoutInflater, @Nullable container: ViewGroup?): View {
         return inflater.inflate(R.layout.my_player_view, container, false)
     }
 }

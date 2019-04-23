@@ -27,7 +27,7 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
-        val videoView = getPlayerView(inflater, container)
+        val videoView = getRootView(inflater, container)
 
         val playerView: PlayerView = videoView.findViewById(R.id.player_layout)
         val volumeView: LinearLayout = videoView.findViewById(R.id.volume_layout)
@@ -128,7 +128,7 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
      * User can override this method and provide their own view for the player.
      * Layout should have views with IDs player_view, volume_layout, volume_text, volume_icon, progress
      */
-    open fun getPlayerView(inflater: LayoutInflater, @Nullable container: ViewGroup?): View {
+    open fun getRootView(inflater: LayoutInflater, @Nullable container: ViewGroup?): View {
         return inflater.inflate(R.layout.eirene_fragment, container, false)
     }
 
