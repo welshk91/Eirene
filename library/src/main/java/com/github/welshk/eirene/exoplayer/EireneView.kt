@@ -224,7 +224,7 @@ class EireneView(
         player!!.volume =
             if (player!!.volume - volumeIncrements < 0f) 0f else player!!.volume - volumeIncrements
 
-        if (player!!.volume == 0f) {
+        if (FormattingUtil.volumeFormatted(player!!.volume) == 0) {
             volumeIcon.setImageResource(R.drawable.volume_off)
         } else {
             volumeIcon.setImageResource(R.drawable.volume_down)
@@ -233,7 +233,7 @@ class EireneView(
     }
 
     private fun volumeChanged() {
-        volumeText.text = (FormattingUtil.volumeFormatted(player!!.volume))
+        volumeText.text = (FormattingUtil.volumeFormatted(player!!.volume).toString())
         volumeView.animate().alpha(1f).duration = VOLUME_ANIMATE_FADE_IN
         handler.removeCallbacks(fadeOutVolume)
         handler.postDelayed(fadeOutVolume, VOLUME_ANIMATE_FADE_OUT_DELAY)
