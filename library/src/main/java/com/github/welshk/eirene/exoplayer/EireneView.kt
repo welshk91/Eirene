@@ -252,7 +252,9 @@ class EireneView(
             .setRendererDisabled(C.TRACK_TYPE_VIDEO, true)
             .build()
 
-        ccButton?.alpha = .6f
+        if (::ccButton.isInitialized) {
+            ccButton?.alpha = .6f
+        }
     }
 
     private fun enableCaptions() {
@@ -260,7 +262,9 @@ class EireneView(
             .setRendererDisabled(C.TRACK_TYPE_VIDEO, false)
             .build()
 
-        ccButton?.alpha = 1f
+        if (::ccButton.isInitialized) {
+            ccButton?.alpha = 1f
+        }
     }
 
     companion object {
