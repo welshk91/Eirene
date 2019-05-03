@@ -3,12 +3,16 @@ package com.github.welshk.eirene.utils
 import android.content.Context
 import android.net.Uri
 import com.google.android.exoplayer2.ext.okhttp.OkHttpDataSourceFactory
+import com.google.android.exoplayer2.offline.FilteringManifestParser
+import com.google.android.exoplayer2.offline.StreamKey
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.dash.DashMediaSource
+import com.google.android.exoplayer2.source.dash.manifest.DashManifestParser
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.source.hls.playlist.DefaultHlsPlaylistParserFactory
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource
+import com.google.android.exoplayer2.source.smoothstreaming.manifest.SsManifestParser
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -38,19 +42,21 @@ class VideoUtil {
             when (contentType) {
                 Constants.Video.VIDEO_TYPE_M3U8 -> {
                     mediaSource = HlsMediaSource.Factory(mediaDataSourceFactory)
-                        .setPlaylistParserFactory(DefaultHlsPlaylistParserFactory())
+                        .setPlaylistParserFactory(DefaultHlsPlaylistParserFactory(getOfflineStreamKeys(uri)))
                         .createMediaSource(uri)
                     return mediaSource
                 }
 
                 Constants.Video.VIDEO_TYPE_DASH -> {
                     mediaSource = DashMediaSource.Factory(mediaDataSourceFactory)
+                        .setManifestParser(FilteringManifestParser(DashManifestParser(), getOfflineStreamKeys(uri)))
                         .createMediaSource(uri)
                     return mediaSource
                 }
 
                 Constants.Video.VIDEO_TYPE_SMOOTH_STREAMING -> {
                     mediaSource = SsMediaSource.Factory(mediaDataSourceFactory)
+                        .setManifestParser(FilteringManifestParser(SsManifestParser(), getOfflineStreamKeys(uri)))
                         .createMediaSource(uri)
                     return mediaSource
                 }
@@ -64,6 +70,11 @@ class VideoUtil {
                 else ->
                     throw IllegalStateException("Unsupported type: $contentType")
             }
+        }
+
+        //TODO This will be important for Offline/Downloading/Caching
+        fun getOfflineStreamKeys(uri: Uri): List<StreamKey> {
+            return emptyList()
         }
 
         /**
