@@ -15,7 +15,8 @@
         android:id="@+id/volume_layout"
         layout="@layout/volume_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp" />
+        android:layout_marginLeft="@dimen/volume_margin_left"
+        android:layout_marginTop="@dimen/volume_margin_top"
+        android:layout_height="wrap_content" />
 
 </merge>
