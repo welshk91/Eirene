@@ -20,6 +20,9 @@
     android:background="#CC000000"
     android:layoutDirection="ltr"
     android:orientation="vertical"
+    android:paddingLeft="@dimen/overscan_left"
+    android:paddingRight="@dimen/overscan_right"
+    android:paddingBottom="@dimen/overscan_bottom"
     tools:targetApi="28">
 
     <include
