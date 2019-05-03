@@ -2,6 +2,7 @@ package com.github.welshk.eirene.utils
 
 import android.content.Context
 import android.net.Uri
+import com.google.android.exoplayer2.DefaultRenderersFactory
 import com.google.android.exoplayer2.ext.okhttp.OkHttpDataSourceFactory
 import com.google.android.exoplayer2.offline.FilteringManifestParser
 import com.google.android.exoplayer2.offline.StreamKey
@@ -102,6 +103,18 @@ class VideoUtil {
             userAgent: String
         ): DefaultDataSourceFactory {
             return DefaultDataSourceFactory(context, userAgent)
+        }
+
+        @JvmStatic
+        fun getRenderersFactory(context: Context, noDecoders: Boolean = false): DefaultRenderersFactory {
+            val defaultRenderer = DefaultRenderersFactory(context)
+
+            if (noDecoders)
+                defaultRenderer.setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF)
+            else
+                defaultRenderer.setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER)
+
+            return defaultRenderer
         }
     }
 }

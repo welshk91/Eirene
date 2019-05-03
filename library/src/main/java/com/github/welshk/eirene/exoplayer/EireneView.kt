@@ -98,7 +98,7 @@ class EireneView(
 
         val mediaSource = VideoUtil.getMediaSource(mediaDataSourceFactory, uri)
 
-        player = ExoPlayerFactory.newSimpleInstance(context, trackSelector!!)
+        player = ExoPlayerFactory.newSimpleInstance(context, VideoUtil.getRenderersFactory(context), trackSelector!!)
         playerView.player = player
 
         player!!.addListener(EireneEventListener(playerView, progressBar))
