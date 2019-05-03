@@ -91,6 +91,9 @@ class DemoVideoFragment : EireneFragment() {
 ```
 
 ## Known Issues
+* No DRM support currently
+* Smooth Streaming (SS) support seems weak, though we could be using out-of-date testing URLs
+* Need to provide a way for users to cache content
 * Need to provide a way for users to properly override lifecycle methods without interfering with video player capabilities
 * Need to provide more customization for volume (layout, disable)
 * Need to provide more customization for Key Events (Android TV remote buttons, swipes, taps)
