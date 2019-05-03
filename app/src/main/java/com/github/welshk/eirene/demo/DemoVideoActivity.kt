@@ -7,7 +7,7 @@ import okhttp3.OkHttpClient
 
 class DemoVideoActivity : EireneActivity() {
     override fun getUri(): Uri {
-        return Uri.parse(Constants.testDASH7)
+        return Uri.parse(Constants.testSS12)
     }
 
     override fun getOkHttpClient(): OkHttpClient {

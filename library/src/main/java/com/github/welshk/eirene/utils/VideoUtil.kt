@@ -8,6 +8,7 @@ import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.source.hls.playlist.DefaultHlsPlaylistParserFactory
+import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -44,6 +45,12 @@ class VideoUtil {
 
                 Constants.Video.VIDEO_TYPE_DASH -> {
                     mediaSource = DashMediaSource.Factory(mediaDataSourceFactory)
+                        .createMediaSource(uri)
+                    return mediaSource
+                }
+
+                Constants.Video.VIDEO_TYPE_SMOOTH_STREAMING -> {
+                    mediaSource = SsMediaSource.Factory(mediaDataSourceFactory)
                         .createMediaSource(uri)
                     return mediaSource
                 }

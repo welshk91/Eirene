@@ -41,6 +41,14 @@ class Constants {
         const val testSS11 =
             "http://playready.directtaps.net/smoothstreaming/ISMAAACLC/Taxi3_AACLC.ism/Manifest"
 
+        //From ExoPlayer sample app; these are the only SS that work for some reason...
+        const val testSS12 =
+            "https://playready.directtaps.net/smoothstreaming/SSWSS720H264/SuperSpeedway_720.ism"
+
+        //DRM
+        const val testSS13 =
+            "https://playready.directtaps.net/smoothstreaming/SSWSS720H264PR/SuperSpeedway_720.ism"
+
 
         /**
          * Dash
