@@ -5,6 +5,7 @@ import android.net.Uri
 import com.google.android.exoplayer2.ext.okhttp.OkHttpDataSourceFactory
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.source.hls.playlist.DefaultHlsPlaylistParserFactory
 import com.google.android.exoplayer2.upstream.DataSource
@@ -41,6 +42,12 @@ class VideoUtil {
                     return mediaSource
                 }
 
+                Constants.Video.VIDEO_TYPE_DASH -> {
+                    mediaSource = DashMediaSource.Factory(mediaDataSourceFactory)
+                        .createMediaSource(uri)
+                    return mediaSource
+                }
+
                 Constants.Video.VIDEO_TYPE_DEFAULT -> {
                     mediaSource = ExtractorMediaSource.Factory(mediaDataSourceFactory)
                         .createMediaSource(uri)
@@ -72,7 +79,10 @@ class VideoUtil {
          * Used for offline files
          */
         @JvmStatic
-        fun buildDefaultDataSourceFactory(context: Context, userAgent: String): DefaultDataSourceFactory {
+        fun buildDefaultDataSourceFactory(
+            context: Context,
+            userAgent: String
+        ): DefaultDataSourceFactory {
             return DefaultDataSourceFactory(context, userAgent)
         }
     }
