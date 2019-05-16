@@ -1,6 +1,5 @@
 package com.github.welshk.eirene.exoplayer
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.view.KeyEvent
@@ -10,6 +9,7 @@ import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import com.github.welshk.eirene.R
+import com.github.welshk.eirene.data.ApplicationDataRepository
 import okhttp3.OkHttpClient
 
 abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
@@ -23,6 +23,12 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
         val videoView = getRootView(inflater, container)
+
+        if (savedInstanceState == null) {
+            context?.let {
+                ApplicationDataRepository.setPlayerDefaults(it)
+            }
+        }
 
         presenter = EirenePresenter(
             context,
@@ -38,59 +44,9 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
         return videoView
     }
 
-//    override fun onDestroy() {
-//        if (::presenter.isInitialized) {
-//            presenter?.onDestroy()
-//        }
-//        super.onDestroy()
-//    }
-//
-//    override fun onStart() {
-//        super.onStart()
-//        if (::presenter.isInitialized) {
-//            presenter?.onStart()
-//        }
-//    }
-//
-//    override fun onResume() {
-//        super.onResume()
-//        if (::presenter.isInitialized) {
-//            presenter?.onResume()
-//        }
-//    }
-//
-//    override fun onPause() {
-//        if (::presenter.isInitialized) {
-//            presenter?.onPause()
-//        }
-//        super.onPause()
-//    }
-//
-//    override fun onStop() {
-//        if (::presenter.isInitialized) {
-//            presenter?.onStop()
-//        }
-//        super.onStop()
-//    }
-//
-//    override fun onDetach() {
-//        if (::presenter.isInitialized) {
-//            presenter?.onDetach()
-//        }
-//        super.onDetach()
-//    }
-//
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        if (::presenter.isInitialized) {
-//            presenter?.onAttach()
-//        }
-//    }
-
     override fun onSaveInstanceState(outState: Bundle) {
-        if (::presenter.isInitialized) {
-            presenter?.onSaveInstanceState(outState)
-        }
+        //TODO: This is ugly. This is just to make sure the savedInstanceBundle isn't null
+        outState.putBoolean("make_sure_bundle_isnt_empty_key", false)
         super.onSaveInstanceState(outState)
     }
 

@@ -2,7 +2,6 @@ package com.github.welshk.eirene.exoplayer
 
 import android.content.Context
 import android.net.Uri
-import android.os.Bundle
 import android.os.Handler
 import android.view.KeyEvent
 import android.view.View
@@ -121,9 +120,9 @@ class EireneView(
 
 
         val haveStartPosition = currentWindow != C.INDEX_UNSET
-        if (haveStartPosition) {
-            //player.seekTo(currentWindow, playbackPosition);
-            //player.seekTo(currentWindow, player.getContentPosition());
+        if (haveStartPosition && !player!!.isCurrentWindowDynamic) {
+            player!!.seekTo(currentWindow, playbackPosition)
+        } else {
             player!!.seekToDefaultPosition()
         }
 
@@ -139,7 +138,9 @@ class EireneView(
 
         if (player != null) {
             presenter.saveLastKnownVolume(player!!.volume)
-            updateStartPosition()
+            presenter.saveLastKnownPosition(player!!.currentPosition)
+            presenter.saveLastKnownCurrentWindow(player!!.currentWindowIndex)
+            presenter.saveLastKnownPlayWhenReady(player!!.playWhenReady)
             shouldAutoPlay = player!!.playWhenReady
             player!!.release()
             player = null
@@ -147,23 +148,11 @@ class EireneView(
         }
     }
 
-    private fun updateStartPosition() {
-        playbackPosition = player!!.currentPosition
-        currentWindow = player!!.currentWindowIndex
-        playWhenReady = player!!.playWhenReady
-    }
-
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
-        if (savedInstanceState == null) {
-            playWhenReady = true
-            currentWindow = 0
-            playbackPosition = 0
-        } else {
-            playWhenReady = savedInstanceState!!.getBoolean(KEY_PLAY_WHEN_READY)
-            currentWindow = savedInstanceState!!.getInt(KEY_WINDOW)
-            playbackPosition = savedInstanceState!!.getLong(KEY_POSITION)
-        }
+        playWhenReady = presenter.loadLastKnownPlayWhenReady()
+        currentWindow = presenter.loadLastKnownCurrentWindow()
+        playbackPosition = presenter.loadLastKnownPosition()
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
@@ -192,14 +181,6 @@ class EireneView(
         if (Util.SDK_INT <= 23 || player == null) {
             initializePlayer()
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        updateStartPosition()
-
-        outState.putBoolean(KEY_PLAY_WHEN_READY, playWhenReady)
-        outState.putInt(KEY_WINDOW, currentWindow)
-        outState.putLong(KEY_POSITION, playbackPosition)
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
@@ -271,10 +252,6 @@ class EireneView(
     }
 
     companion object {
-        const val KEY_PLAY_WHEN_READY = "play_when_ready"
-        const val KEY_WINDOW = "window"
-        const val KEY_POSITION = "position"
-
         const val VOLUME_ANIMATE_FADE_IN: Long = 800
         const val VOLUME_ANIMATE_FADE_OUT: Long = 800
         const val VOLUME_ANIMATE_FADE_OUT_DELAY: Long = 2000
