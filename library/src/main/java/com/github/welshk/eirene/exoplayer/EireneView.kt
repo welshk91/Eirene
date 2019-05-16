@@ -72,7 +72,7 @@ class EireneView(
 
         val bandwidthMeter = DefaultBandwidthMeter()
 
-        var mediaDataSourceFactory: DataSource.Factory
+        val mediaDataSourceFactory: DataSource.Factory
         if (okHttpClient != null) {
             mediaDataSourceFactory = VideoUtil.buildHttpDataSourceFactory(
                 okHttpClient,
