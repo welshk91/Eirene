@@ -22,6 +22,7 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
 
         presenter = EirenePresenter(
             baseContext,
+            lifecycle,
             getOkHttpClient(),
             findViewById<View>(android.R.id.content),
             getUri(),
@@ -29,44 +30,44 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
             isClosedCaptionToggleEnabled()
         )
 
-        presenter.onCreate(savedInstanceState)
+        lifecycle.addObserver(presenter)
     }
 
-    override fun onDestroy() {
-        if (::presenter.isInitialized) {
-            presenter?.onDestroy()
-        }
-
-        super.onDestroy()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if (::presenter.isInitialized) {
-            presenter?.onStart()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (::presenter.isInitialized) {
-            presenter?.onResume()
-        }
-    }
-
-    override fun onPause() {
-        if (::presenter.isInitialized) {
-            presenter?.onPause()
-        }
-        super.onPause()
-    }
-
-    override fun onStop() {
-        if (::presenter.isInitialized) {
-            presenter?.onStop()
-        }
-        super.onStop()
-    }
+//    override fun onDestroy() {
+//        if (::presenter.isInitialized) {
+//            presenter?.onDestroy()
+//        }
+//
+//        super.onDestroy()
+//    }
+//
+//    override fun onStart() {
+//        super.onStart()
+//        if (::presenter.isInitialized) {
+//            presenter?.onStart()
+//        }
+//    }
+//
+//    override fun onResume() {
+//        super.onResume()
+//        if (::presenter.isInitialized) {
+//            presenter?.onResume()
+//        }
+//    }
+//
+//    override fun onPause() {
+//        if (::presenter.isInitialized) {
+//            presenter?.onPause()
+//        }
+//        super.onPause()
+//    }
+//
+//    override fun onStop() {
+//        if (::presenter.isInitialized) {
+//            presenter?.onStop()
+//        }
+//        super.onStop()
+//    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         if (::presenter.isInitialized) {

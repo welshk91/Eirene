@@ -10,6 +10,9 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.github.welshk.eirene.R
 import com.github.welshk.eirene.data.ApplicationDataRepository
 import com.github.welshk.eirene.utils.DeviceUtil
@@ -29,12 +32,13 @@ import okhttp3.OkHttpClient
 
 class EireneView(
     private val presenter: EirenePresenter,
+    private val context: Context,
     private val okHttpClient: OkHttpClient?,
     private val rootView: View,
     private val uri: Uri,
     private val isClosedCaptionEnabled: Boolean,
     private val isClosedCaptionToggleEnabled: Boolean
-) : EireneContract.View, EireneContract.DispatchKeyEvent {
+) : EireneContract.View, EireneContract.DispatchKeyEvent, LifecycleObserver {
     private val userAgent: String = "mediaPlayerSample"
 
     private var player: SimpleExoPlayer? = null
@@ -65,7 +69,7 @@ class EireneView(
     private val fadeOutVolume: Runnable =
         Runnable { this.volumeView.animate().alpha(0f).duration = VOLUME_ANIMATE_FADE_OUT }
 
-    private fun initializePlayer(context: Context) {
+    private fun initializePlayer() {
         playerView.requestFocus()
         progressBar.visibility = View.VISIBLE
         DeviceUtil.hideSystemUi(playerView.context)
@@ -149,53 +153,45 @@ class EireneView(
         playWhenReady = player!!.playWhenReady
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    fun onCreate() {
         if (savedInstanceState == null) {
             playWhenReady = true
             currentWindow = 0
             playbackPosition = 0
         } else {
-            playWhenReady = savedInstanceState.getBoolean(KEY_PLAY_WHEN_READY)
-            currentWindow = savedInstanceState.getInt(KEY_WINDOW)
-            playbackPosition = savedInstanceState.getLong(KEY_POSITION)
+            playWhenReady = savedInstanceState!!.getBoolean(KEY_PLAY_WHEN_READY)
+            currentWindow = savedInstanceState!!.getInt(KEY_WINDOW)
+            playbackPosition = savedInstanceState!!.getLong(KEY_POSITION)
         }
-
     }
 
-    override fun onStart(context: Context?) {
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun onStart() {
         if (Util.SDK_INT > 23) {
-            if (context != null) {
-                initializePlayer(context)
-            }
+            initializePlayer()
         }
     }
 
-    override fun onStop() {
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    fun onStop() {
         if (Util.SDK_INT > 23) {
             releasePlayer()
         }
     }
 
-    override fun onPause() {
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    fun onPause() {
         if (Util.SDK_INT <= 23) {
             releasePlayer()
         }
     }
 
-    override fun onResume(context: Context?) {
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    fun onResume() {
         if (Util.SDK_INT <= 23 || player == null) {
-            if (context != null) {
-                initializePlayer(context)
-            }
+            initializePlayer()
         }
-    }
-
-    override fun onDetach() {
-
-    }
-
-    override fun onAttach() {
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

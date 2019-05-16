@@ -26,65 +26,66 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
 
         presenter = EirenePresenter(
             context,
+            lifecycle,
             getOkHttpClient(),
             videoView,
             getUri(),
             isClosedCaptionEnabled(),
             isClosedCaptionToggleEnabled()
         )
-        presenter.onCreate(savedInstanceState)
 
+        lifecycle.addObserver(presenter)
         return videoView
     }
 
-    override fun onDestroy() {
-        if (::presenter.isInitialized) {
-            presenter?.onDestroy()
-        }
-        super.onDestroy()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if (::presenter.isInitialized) {
-            presenter?.onStart()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (::presenter.isInitialized) {
-            presenter?.onResume()
-        }
-    }
-
-    override fun onPause() {
-        if (::presenter.isInitialized) {
-            presenter?.onPause()
-        }
-        super.onPause()
-    }
-
-    override fun onStop() {
-        if (::presenter.isInitialized) {
-            presenter?.onStop()
-        }
-        super.onStop()
-    }
-
-    override fun onDetach() {
-        if (::presenter.isInitialized) {
-            presenter?.onDetach()
-        }
-        super.onDetach()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (::presenter.isInitialized) {
-            presenter?.onAttach()
-        }
-    }
+//    override fun onDestroy() {
+//        if (::presenter.isInitialized) {
+//            presenter?.onDestroy()
+//        }
+//        super.onDestroy()
+//    }
+//
+//    override fun onStart() {
+//        super.onStart()
+//        if (::presenter.isInitialized) {
+//            presenter?.onStart()
+//        }
+//    }
+//
+//    override fun onResume() {
+//        super.onResume()
+//        if (::presenter.isInitialized) {
+//            presenter?.onResume()
+//        }
+//    }
+//
+//    override fun onPause() {
+//        if (::presenter.isInitialized) {
+//            presenter?.onPause()
+//        }
+//        super.onPause()
+//    }
+//
+//    override fun onStop() {
+//        if (::presenter.isInitialized) {
+//            presenter?.onStop()
+//        }
+//        super.onStop()
+//    }
+//
+//    override fun onDetach() {
+//        if (::presenter.isInitialized) {
+//            presenter?.onDetach()
+//        }
+//        super.onDetach()
+//    }
+//
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        if (::presenter.isInitialized) {
+//            presenter?.onAttach()
+//        }
+//    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         if (::presenter.isInitialized) {
