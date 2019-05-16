@@ -41,7 +41,13 @@ class EireneView(
     private val volumeView: View = rootView.findViewById(R.id.volume_layout)
     private val volumeText: TextView = rootView.findViewById(R.id.volume_text)
     private val volumeIcon: ImageView = rootView.findViewById(R.id.volume_icon)
-    private lateinit var ccButton: ImageButton
+
+
+    private val ccButton: ImageButton by lazy {
+        rootView.findViewById<ImageButton>(R.id.exo_closed_caption_button)
+    }
+
+
     private val progressBar: ProgressBar = rootView.findViewById(R.id.progress)
 
     private var trackSelector: DefaultTrackSelector? = null
@@ -83,7 +89,6 @@ class EireneView(
         trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
 
         if (isClosedCaptionToggleEnabled) {
-            ccButton = rootView.findViewById(R.id.exo_closed_caption_button)
             ccButton.visibility = View.VISIBLE
             ccButton.setOnClickListener {
                 toggleCaptions()
@@ -98,7 +103,11 @@ class EireneView(
 
         val mediaSource = VideoUtil.getMediaSource(mediaDataSourceFactory, uri)
 
-        player = ExoPlayerFactory.newSimpleInstance(context, VideoUtil.getRenderersFactory(context), trackSelector!!)
+        player = ExoPlayerFactory.newSimpleInstance(
+            context,
+            VideoUtil.getRenderersFactory(context),
+            trackSelector!!
+        )
         playerView.player = player
 
         player!!.addListener(EireneEventListener(playerView, progressBar))
@@ -252,9 +261,7 @@ class EireneView(
             .setRendererDisabled(C.TRACK_TYPE_VIDEO, true)
             .build()
 
-        if (::ccButton.isInitialized) {
-            ccButton?.alpha = .6f
-        }
+        ccButton?.alpha = .6f
     }
 
     private fun enableCaptions() {
@@ -262,9 +269,7 @@ class EireneView(
             .setRendererDisabled(C.TRACK_TYPE_VIDEO, false)
             .build()
 
-        if (::ccButton.isInitialized) {
-            ccButton?.alpha = 1f
-        }
+        ccButton?.alpha = 1f
     }
 
     companion object {
