@@ -91,13 +91,15 @@ class DemoVideoFragment : EireneFragment() {
 ```
 
 ## Known Issues
+* No ChromeCast support currently (Highest priority feature)
 * No DRM support currently
-* Smooth Streaming (SS) support seems weak, though we could be using out-of-date testing URLs
+* Should look into [LifeCycle-Aware Components](https://developer.android.com/topic/libraries/architecture/lifecycle) for a better way to make the VIPER components LifeCycle-Aware (instead of including the methods in the Contract)
 * Need to provide a way for users to cache content
-* Need to provide a way for users to properly override lifecycle methods without interfering with video player capabilities
-* Need to provide more customization for volume (layout, disable)
+* Need to provide more customization for volume (layout, disable especially on phones that already manage media volume)
 * Need to provide more customization for Key Events (Android TV remote buttons, swipes, taps)
 * Need to provide more customization for the media control layout (play/pause, fast forward, closed captioning)
+* Look into providing a menu for options like subtitle/track selection, properties (similar to Funamation's player)
+* Smooth Streaming (SS) support seems weak, though we could be using out-of-date testing URLs
 * Clean up warnings
 * Get demo on Play Store
 
