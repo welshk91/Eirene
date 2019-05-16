@@ -7,6 +7,7 @@ buildscript {
     ext.exoplayer_version = '2.9.6'
     ext.retrofit_version = '2.5.0'
     ext.appcompat_version = '1.0.2'
+    ext.lifecycle_version = '2.2.0-alpha01'
     repositories {
         google()
         jcenter()
