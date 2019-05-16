@@ -35,6 +35,8 @@ class EireneView(
     private val isClosedCaptionEnabled: Boolean,
     private val isClosedCaptionToggleEnabled: Boolean
 ) : EireneContract.View, EireneContract.DispatchKeyEvent {
+    private val userAgent: String = "mediaPlayerSample"
+
     private var player: SimpleExoPlayer? = null
 
     private val playerView: PlayerView = rootView.findViewById(R.id.player_layout)
@@ -74,14 +76,14 @@ class EireneView(
         if (okHttpClient != null) {
             mediaDataSourceFactory = VideoUtil.buildHttpDataSourceFactory(
                 okHttpClient,
-                Util.getUserAgent(context, "mediaPlayerSample"),
+                Util.getUserAgent(context, userAgent),
                 bandwidthMeter
             )
         } else {
             mediaDataSourceFactory =
                 VideoUtil.buildDefaultDataSourceFactory(
                     context,
-                    Util.getUserAgent(context, "mediaPlayerSample")
+                    Util.getUserAgent(context, userAgent)
                 )
         }
 
