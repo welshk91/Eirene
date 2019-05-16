@@ -7,11 +7,6 @@ import android.preference.PreferenceManager
 
 class SharedPreferenceManager(context: Context) {
     val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    private val VOLUME_KEY = "player_volume"
-    private val VOLUME_INCREMENTS_KEY = "player_volume_increments"
-    private val POSITION_KEY = "player_position"
-    private val PLAY_WHEN_READY_KEY = "player_play_when_ready"
-    private val CURRENT_WINDOW_KEY = "player_current_window"
 
     private fun getEditor(): SharedPreferences.Editor {
         return prefs.edit()
@@ -57,6 +52,12 @@ class SharedPreferenceManager(context: Context) {
         set(value) = getEditor().putInt(CURRENT_WINDOW_KEY, value).apply()
 
     companion object {
+        private const val VOLUME_KEY = "player_volume"
+        private const val VOLUME_INCREMENTS_KEY = "player_volume_increments"
+        private const val POSITION_KEY = "player_position"
+        private const val PLAY_WHEN_READY_KEY = "player_play_when_ready"
+        private const val CURRENT_WINDOW_KEY = "player_current_window"
+
         const val DEFAULT_VALUE_PLAYER_VOLUME = 1f
         const val DEFAULT_VALUE_VOLUME_INCREMENTS = "5"
         const val DEFAULT_VALUE_POSITION = 0L
