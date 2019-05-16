@@ -87,7 +87,7 @@ class EireneView(
                 )
         }
 
-        val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(bandwidthMeter)
+        val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory()
         trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
 
         if (isClosedCaptionToggleEnabled) {
