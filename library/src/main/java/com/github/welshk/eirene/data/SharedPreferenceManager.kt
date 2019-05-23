@@ -6,7 +6,7 @@ import android.preference.PreferenceManager
 
 
 class SharedPreferenceManager(context: Context) {
-    val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    private val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     private fun getEditor(): SharedPreferences.Editor {
         return prefs.edit()
@@ -20,7 +20,7 @@ class SharedPreferenceManager(context: Context) {
         get() = getVolumeIncrementsParsing()
         set(value) = getEditor().putFloat(VOLUME_INCREMENTS_KEY, value).apply()
 
-    fun getVolumeIncrementsParsing(): Float {
+    private fun getVolumeIncrementsParsing(): Float {
         var volumePreference: Int
 
         return try {
