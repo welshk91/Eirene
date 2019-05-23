@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.github.welshk.eirene.R
+import com.github.welshk.eirene.data.ApplicationDataRepository
 import okhttp3.OkHttpClient
 
 abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyEvent {
@@ -20,8 +21,13 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
         super.onCreate(savedInstanceState)
         getRootView(savedInstanceState)
 
+        if (savedInstanceState == null) {
+            ApplicationDataRepository.setPlayerDefaults(this)
+        }
+
         presenter = EirenePresenter(
             baseContext,
+            lifecycle,
             getOkHttpClient(),
             findViewById<View>(android.R.id.content),
             getUri(),
@@ -29,49 +35,12 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
             isClosedCaptionToggleEnabled()
         )
 
-        presenter.onCreate(savedInstanceState)
-    }
-
-    override fun onDestroy() {
-        if (::presenter.isInitialized) {
-            presenter?.onDestroy()
-        }
-
-        super.onDestroy()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if (::presenter.isInitialized) {
-            presenter?.onStart()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (::presenter.isInitialized) {
-            presenter?.onResume()
-        }
-    }
-
-    override fun onPause() {
-        if (::presenter.isInitialized) {
-            presenter?.onPause()
-        }
-        super.onPause()
-    }
-
-    override fun onStop() {
-        if (::presenter.isInitialized) {
-            presenter?.onStop()
-        }
-        super.onStop()
+        lifecycle.addObserver(presenter)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        if (::presenter.isInitialized) {
-            presenter?.onSaveInstanceState(outState)
-        }
+        //TODO: This is ugly. This is just to make sure the savedInstanceBundle isn't null
+        outState.putBoolean("make_sure_bundle_isnt_empty_key", false)
         super.onSaveInstanceState(outState)
     }
 
