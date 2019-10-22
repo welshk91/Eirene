@@ -94,6 +94,7 @@ class DemoVideoFragment : EireneFragment() {
 * No ChromeCast support currently (Highest priority feature)
 * No DRM support currently
 * Provide possibility to have picture-in-picture or side-by-side videos
+* Provide an interface (for classes that don't want to use inheritence)
 * Should look into [LifeCycle-Aware Components](https://developer.android.com/topic/libraries/architecture/lifecycle) for a better way to make the VIPER components LifeCycle-Aware (instead of including the methods in the Contract)
 * Need to provide a way for users to cache content
 * Need to provide more customization for volume (layout, disable especially on phones that already manage media volume)
