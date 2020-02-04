@@ -2,11 +2,9 @@ package com.github.welshk.eirene.data
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
-
 
 class SharedPreferenceManager(context: Context) {
-    private val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    private val prefs: SharedPreferences = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE)
 
     private fun getEditor(): SharedPreferences.Editor {
         return prefs.edit()
@@ -52,6 +50,9 @@ class SharedPreferenceManager(context: Context) {
         set(value) = getEditor().putInt(CURRENT_WINDOW_KEY, value).apply()
 
     companion object {
+        private const val PRIVATE_MODE = 0
+        private const val PREF_NAME = "Eirene-Preferences"
+
         private const val VOLUME_KEY = "player_volume"
         private const val VOLUME_INCREMENTS_KEY = "player_volume_increments"
         private const val POSITION_KEY = "player_position"
