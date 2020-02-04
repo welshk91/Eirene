@@ -183,14 +183,14 @@ class EireneView(
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
-        return when {
-            event.keyCode == KeyEvent.KEYCODE_DPAD_UP -> {
+        return when (event.keyCode) {
+            KeyEvent.KEYCODE_DPAD_UP -> {
                 if (event.action == KeyEvent.ACTION_DOWN) {
                     volumeIncrease()
                 }
                 true
             }
-            event.keyCode == KeyEvent.KEYCODE_DPAD_DOWN -> {
+            KeyEvent.KEYCODE_DPAD_DOWN -> {
                 if (event.action == KeyEvent.ACTION_DOWN) {
                     volumeDecrease()
                 }
