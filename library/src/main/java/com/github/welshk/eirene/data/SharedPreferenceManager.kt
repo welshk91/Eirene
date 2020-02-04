@@ -25,7 +25,7 @@ class SharedPreferenceManager(context: Context) {
 
         return try {
             volumePreference = Integer.parseInt(
-                prefs.getString(VOLUME_INCREMENTS_KEY, DEFAULT_VALUE_VOLUME_INCREMENTS)
+                prefs.getString(VOLUME_INCREMENTS_KEY, DEFAULT_VALUE_VOLUME_INCREMENTS)!!
             )
             volumePreference / 100f
         } catch (exception: NumberFormatException) {
