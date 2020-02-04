@@ -4,10 +4,6 @@ import android.os.Bundle
 import android.view.KeyEvent
 
 class EireneContract {
-    interface View {
-
-    }
-
     interface Presenter {
         fun onSaveInstanceState(outState: Bundle)
 

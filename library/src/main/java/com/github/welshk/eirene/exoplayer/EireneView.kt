@@ -37,7 +37,7 @@ class EireneView(
     private val uri: Uri,
     private val isClosedCaptionEnabled: Boolean,
     private val isClosedCaptionToggleEnabled: Boolean
-) : EireneContract.View, EireneContract.DispatchKeyEvent, LifecycleObserver {
+) : EireneContract.DispatchKeyEvent, LifecycleObserver {
     private val userAgent: String = "mediaPlayerSample"
 
     private var player: SimpleExoPlayer? = null
