@@ -13,8 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //This is where we supply a test URL
-        NetworkManager.Instance.initService("http://d1s3yn3kxq96sy.cloudfront.net/")
+        //This is where we supply a test URL. We actually just use a full path in RetroFit so this isnt used
+        NetworkManager.Instance.initService("http://fakeurl.com")
 
         button_activity.setOnClickListener {
             val intent = Intent(this, DemoVideoActivity::class.java)
