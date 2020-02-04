@@ -28,10 +28,11 @@ class VideoUtil {
          */
         @JvmStatic
         fun getVideoType(uri: Uri): String {
+            val path = uri.path!!
             return when {
-                uri.path.contains(".m3u8") -> Constants.Video.VIDEO_TYPE_M3U8
-                uri.path.contains(".mpd") -> Constants.Video.VIDEO_TYPE_DASH
-                uri.path.contains(".ism") -> Constants.Video.VIDEO_TYPE_SMOOTH_STREAMING
+                path.contains(".m3u8") -> Constants.Video.VIDEO_TYPE_M3U8
+                path.contains(".mpd") -> Constants.Video.VIDEO_TYPE_DASH
+                path.contains(".ism") -> Constants.Video.VIDEO_TYPE_SMOOTH_STREAMING
                 else -> Constants.Video.VIDEO_TYPE_DEFAULT
             }
         }
