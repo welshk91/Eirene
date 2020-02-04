@@ -76,18 +76,17 @@ class EireneView(
         val bandwidthMeter = DefaultBandwidthMeter()
 
         val mediaDataSourceFactory: DataSource.Factory
-        if (okHttpClient != null) {
-            mediaDataSourceFactory = VideoUtil.buildHttpDataSourceFactory(
+        mediaDataSourceFactory = if (okHttpClient != null) {
+            VideoUtil.buildHttpDataSourceFactory(
                 okHttpClient,
                 Util.getUserAgent(context, userAgent),
                 bandwidthMeter
             )
         } else {
-            mediaDataSourceFactory =
-                VideoUtil.buildDefaultDataSourceFactory(
-                    context,
-                    Util.getUserAgent(context, userAgent)
-                )
+            VideoUtil.buildDefaultDataSourceFactory(
+                context,
+                Util.getUserAgent(context, userAgent)
+            )
         }
 
         val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory()
