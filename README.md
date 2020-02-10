@@ -16,6 +16,7 @@ Unlike a pure ExoPlayer development environment, this library tries to handle mu
 A demo project is included in this repo under the `app` directory
 
 ## How To Include
+##### Warning: This library is still in 'pre-alpha'. Expect Changes to the APIs!
 Add the [Jitpack.io](https://jitpack.io/) repository to your project **build.gradle** under `allprojects`:
 ```Gradle
 allprojects {
@@ -60,7 +61,7 @@ class DemoVideoFragment : EireneFragment() {
 For both methods, you will have to provide an implementation detailing what Uri to play.
 
 ## Customizations
-While `EireneActivity` and `EireneFragment` abstract classes both provide a good default template, you may want to add even more customizations to your video experience.
+While the `EireneActivity` and `EireneFragment` abstract classes both provide a good default template, you may want to add even more customizations to your video experience.
 
 #### Custom Layout
 If you want to provide a different layout than the library's default, you can simply override the `getRootView` method
@@ -95,14 +96,15 @@ class DemoVideoFragment : EireneFragment() {
 * No DRM support currently
 * Provide possibility to have picture-in-picture or side-by-side videos
 * Provide an interface (for classes that don't want to use inheritence)
-* Should look into [LifeCycle-Aware Components](https://developer.android.com/topic/libraries/architecture/lifecycle) for a better way to make the VIPER components LifeCycle-Aware (instead of including the methods in the Contract)
-* Need to provide a way for users to cache content
+* Need to provide a way for developers to customize the cache
 * Need to provide more customization for volume (layout, disable especially on phones that already manage media volume)
 * Need to provide more customization for Key Events (Android TV remote buttons, swipes, taps)
 * Need to provide more customization for the media control layout (play/pause, fast forward, closed captioning)
-* Look into providing a menu for options like subtitle/track selection, properties (similar to Funamation's player)
+* Look into providing a menu for options like subtitle/track selection, properties (similar to VLC or Funamation's player)
 * Smooth Streaming (SS) support seems weak, though we could be using out-of-date testing URLs
 * Clean up warnings
+* Create a Wiki (Common use cases, FAQ, important tips) 
+* Screenshots
 * Get demo on Play Store
 
 ## License
