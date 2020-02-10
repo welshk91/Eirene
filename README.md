@@ -16,7 +16,7 @@ Unlike a pure ExoPlayer development environment, this library tries to handle mu
 A demo project is included in this repo under the `app` directory
 
 ## How To Include
-##### Warning: This library is still in 'pre-alpha'. Expect Changes to the APIs!
+#### Warning: This library is still in 'pre-alpha'. Expect changes to the APIs!
 Add the [Jitpack.io](https://jitpack.io/) repository to your project **build.gradle** under `allprojects`:
 ```Gradle
 allprojects {
@@ -43,8 +43,9 @@ dependencies {
 If you're using Activities, simply extend from the `EireneActivity` class provided. The end result will look like something below:
 ```Kotlin
 class DemoVideoActivity : EireneActivity() {
+    val baseUrl = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
     override fun getUri(): Uri {
-        return Uri.parse("https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")
+        return Uri.parse(baseUrl)
     }
 }
 ```
@@ -53,8 +54,9 @@ class DemoVideoActivity : EireneActivity() {
 If you're using Fragments, simply extend from the `EireneFragment` class provided. The end result will look like something below:
 ```Kotlin
 class DemoVideoFragment : EireneFragment() {
+    val baseUrl = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
     override fun getUri(): Uri {
-        return Uri.parse("https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")
+        return Uri.parse(baseUrl)
     }
 }
 ```
@@ -91,21 +93,21 @@ class DemoVideoFragment : EireneFragment() {
 }
 ```
 
-## Known Issues
-* No ChromeCast support currently (Highest priority feature)
-* No DRM support currently
+## Coming Soon
+* ChromeCast support (Highest priority feature)
+* DRM support
 * Provide possibility to have picture-in-picture or side-by-side videos
 * Provide an interface (for classes that don't want to use inheritence)
-* Need to provide a way for developers to customize the cache
-* Need to provide more customization for volume (layout, disable especially on phones that already manage media volume)
-* Need to provide more customization for Key Events (Android TV remote buttons, swipes, taps)
-* Need to provide more customization for the media control layout (play/pause, fast forward, closed captioning)
-* Look into providing a menu for options like subtitle/track selection, properties (similar to VLC or Funamation's player)
+* Provide a way for developers to customize the cache
+* Provide more customization for volume (layout, disable especially on phones that already manage media volume)
+* Provide more customization for Key Events (Android TV remote buttons, swipes, taps)
+* Provide more customization for the media control layout (play/pause, fast forward, closed captioning)
+* Provide a menu for options like subtitle/track selection, properties (similar to VLC or Funamation's player)
 * Smooth Streaming (SS) support seems weak, though we could be using out-of-date testing URLs
 * Clean up warnings
-* Create a Wiki (Common use cases, FAQ, important tips) 
+* A Wiki (Common use cases, FAQ, important tips) 
 * Screenshots
-* Get demo on Play Store
+* Published Demo on the Play Store
 
 ## License
 	Copyright 2019 Kevin Welsh
