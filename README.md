@@ -1,5 +1,5 @@
 <h1 align="center">Eirene <a href="https://github.com/welshk91/Eirene#how-to-include"><img src="https://jitpack.io/v/javiersantos/AppUpdater.svg"></a></h1>
-<h4 align="center">Android Library</h4>
+<h4 align="center">Android Video Player Library</h4>
 
 <p align="center">
   <a target="_blank" href="https://android-arsenal.com/api?level=16"><img src="https://img.shields.io/badge/API-16%2B-orange.svg"></a>
@@ -99,8 +99,7 @@ class DemoVideoFragment : EireneFragment() {
 * Customization for volume (layout, disable especially on phones that already manage media volume)
 * Customization for Key Events (Android TV remote buttons, swipes, taps)
 * Customization for the media control layout (play/pause, fast forward, closed captioning)
-* An interface for classes that don't want to use inheritance
-* And more in GitHub's `Projects` tab!
+* And more in GitHub's [Projects](https://github.com/welshk91/Eirene/projects) tab!
 
 ## License
 	Copyright 2019 Kevin Welsh
