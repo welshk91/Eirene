@@ -23,7 +23,9 @@
     android:paddingLeft="@dimen/overscan_left"
     android:paddingRight="@dimen/overscan_right"
     android:paddingBottom="@dimen/overscan_bottom"
-    tools:targetApi="28">
+    tools:targetApi="28"
+    android:paddingStart="@dimen/overscan_left"
+    android:paddingEnd="@dimen/overscan_right">
 
     <include
         android:id="@+id/playback_controls"
