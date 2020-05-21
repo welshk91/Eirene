@@ -34,7 +34,7 @@ class NetworkManager {
                 .client(httpClient!!.build())
                 .build()
 
-            service = retrofit.create(RestService::class.java!!)
+            service = retrofit.create(RestService::class.java)
         }
 
         private fun initHttpClient() {
