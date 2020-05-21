@@ -44,12 +44,19 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
         return videoView
     }
 
+    /**
+     * This allows us to to not reset to the video player defaults (location) when a user rotates the screen.
+     */
     override fun onSaveInstanceState(outState: Bundle) {
         //TODO: This is ugly. This is just to make sure the savedInstanceBundle isn't null
         outState.putBoolean("make_sure_bundle_isnt_empty_key", false)
         super.onSaveInstanceState(outState)
     }
 
+    /**
+     * Passes all KeyCodes (except Back) to the presenter to be handle by the video player.
+     * This allows us to handle when a user clicks up/down on the Android TV remote, adjusting the volume.
+     */
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
         return if (::presenter.isInitialized && event.keyCode != KeyEvent.KEYCODE_BACK) {
             presenter.dispatchKeyEvent(event)
@@ -75,10 +82,16 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
         return inflater.inflate(R.layout.eirene_fragment, container, false)
     }
 
+    /**
+     * Default to Closed Caption being enabled
+     */
     open fun isClosedCaptionEnabled(): Boolean {
         return true
     }
 
+    /**
+     * Default to Closed Caption icon being visible to the user
+     */
     open fun isClosedCaptionToggleEnabled(): Boolean {
         return isClosedCaptionEnabled()
     }
