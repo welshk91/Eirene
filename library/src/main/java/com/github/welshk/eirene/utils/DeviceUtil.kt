@@ -13,6 +13,9 @@ class DeviceUtil {
     companion object {
         private var mSystemUiVisibility: Int = 0
 
+        /**
+         * Hides system UI by setting the appropriate flags
+         */
         @JvmStatic
         @Throws(NullPointerException::class)
         fun hideSystemUi(context: Context) {
@@ -33,6 +36,9 @@ class DeviceUtil {
             context.window.decorView.systemUiVisibility = mSystemUiVisibility
         }
 
+        /**
+         * Shows system UI by setting the appropriate flags
+         */
         @JvmStatic
         @Throws(NullPointerException::class)
         fun showSystemUi(context: Context) {

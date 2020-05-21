@@ -23,8 +23,8 @@ import okhttp3.OkHttpClient
 class VideoUtil {
     companion object {
         /**
-         * Returns the type of video in the url
-         *
+         * Returns the type of video in the url.
+         * Pretty basic detection based on whether a uri contains one of the extensions
          */
         @JvmStatic
         fun getVideoType(uri: Uri): String {
@@ -37,6 +37,9 @@ class VideoUtil {
             }
         }
 
+        /**
+         * Returns a MediaSource object based on the type of video.
+         */
         @JvmStatic
         fun getMediaSource(mediaDataSourceFactory: DataSource.Factory, uri: Uri): MediaSource {
             val contentType = getVideoType(uri)
@@ -80,7 +83,8 @@ class VideoUtil {
         }
 
         /**
-         * Used for online files
+         * Used for online files.
+         * Returns an HttpDataSource Factory with the given httpClient, userAgent, and bandwidthMeter.
          */
         @JvmStatic
         fun buildHttpDataSourceFactory(
@@ -96,7 +100,8 @@ class VideoUtil {
         }
 
         /**
-         * Used for offline files
+         * Used for offline files.
+         * Returns a DefaultDataSourceFactory based in context and userAgent.
          */
         @JvmStatic
         fun buildDefaultDataSourceFactory(
@@ -106,6 +111,9 @@ class VideoUtil {
             return DefaultDataSourceFactory(context, userAgent)
         }
 
+        /**
+         * Returns a DefaultRenderersFactory based on whether we want to provide extensions for the rendering mode.
+         */
         @JvmStatic
         fun getRenderersFactory(context: Context, noDecoders: Boolean = false): DefaultRenderersFactory {
             val defaultRenderer = DefaultRenderersFactory(context)
