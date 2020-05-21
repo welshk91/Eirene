@@ -13,7 +13,7 @@ This library aims to ease the burden of creating video experiences. It's built o
 Unlike a pure ExoPlayer development environment, this library tries to handle much of the boiler plate code and setup. While this removes some of the configurability, the library allows for an easy, general use case out-of-the-box.
 
 ## Demo Project
-A demo project is included in this repo under the `app` directory
+A demo project is included in this repo under the `app` directory. A more advanced demo will be provided in a separate repository in the future. The plan is to release the demos to the Google Play Store when they mature.
 
 ## How To Include
 #### Warning: This library is still in 'pre-alpha'. Expect changes to the APIs!
@@ -96,18 +96,11 @@ class DemoVideoFragment : EireneFragment() {
 ## Coming Soon
 * ChromeCast support (Highest priority feature)
 * DRM support
-* Provide possibility to have picture-in-picture or side-by-side videos
-* Provide an interface (for classes that don't want to use inheritence)
-* Provide a way for developers to customize the cache
-* Provide more customization for volume (layout, disable especially on phones that already manage media volume)
-* Provide more customization for Key Events (Android TV remote buttons, swipes, taps)
-* Provide more customization for the media control layout (play/pause, fast forward, closed captioning)
-* Provide a menu for options like subtitle/track selection, properties (similar to VLC or Funamation's player)
-* Smooth Streaming (SS) support seems weak, though we could be using out-of-date testing URLs
-* Clean up warnings
-* A Wiki (Common use cases, FAQ, important tips) 
-* Screenshots
-* Published Demo on the Play Store
+* Customization for volume (layout, disable especially on phones that already manage media volume)
+* Customization for Key Events (Android TV remote buttons, swipes, taps)
+* Customization for the media control layout (play/pause, fast forward, closed captioning)
+* An interface for classes that don't want to use inheritance
+* And more in GitHub's `Projects` tab!
 
 ## License
 	Copyright 2019 Kevin Welsh
