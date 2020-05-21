@@ -29,7 +29,7 @@ abstract class EireneActivity : AppCompatActivity(), EireneContract.DispatchKeyE
             baseContext,
             lifecycle,
             getOkHttpClient(),
-            findViewById<View>(android.R.id.content),
+            findViewById(android.R.id.content),
             getUri(),
             isClosedCaptionEnabled(),
             isClosedCaptionToggleEnabled()
