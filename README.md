@@ -1,4 +1,4 @@
-<h1 align="center">Eirene <a href="https://github.com/welshk91/Eirene#how-to-include"><img src="https://jitpack.io/v/javiersantos/AppUpdater.svg"></a></h1>
+<h1 align="center">Eirene <a href="https://github.com/welshk91/Eirene#how-to-include"><img src="https://jitpack.io/v/welshk91/Eirene.svg"></a></h1>
 <h4 align="center">Android Video Player Library</h4>
 
 <p align="center">
