@@ -28,13 +28,18 @@ class VideoUtil {
          */
         @JvmStatic
         fun getVideoType(uri: Uri): String {
-            val path = uri.path!!
-            return when {
-                path.contains(Constants.Video.VIDEO_EXTENSION_M3U8) -> Constants.Video.VIDEO_TYPE_M3U8
-                path.contains(Constants.Video.VIDEO_EXTENSION_DASH) -> Constants.Video.VIDEO_TYPE_DASH
-                path.contains(Constants.Video.VIDEO_EXTENSION_SMOOTH_STREAMING) -> Constants.Video.VIDEO_TYPE_SMOOTH_STREAMING
-                else -> Constants.Video.VIDEO_TYPE_DEFAULT
+            val path = uri.path
+
+            path?.let {
+                return when {
+                    it.contains(Constants.Video.VIDEO_EXTENSION_M3U8) -> Constants.Video.VIDEO_TYPE_M3U8
+                    it.contains(Constants.Video.VIDEO_EXTENSION_DASH) -> Constants.Video.VIDEO_TYPE_DASH
+                    it.contains(Constants.Video.VIDEO_EXTENSION_SMOOTH_STREAMING) -> Constants.Video.VIDEO_TYPE_SMOOTH_STREAMING
+                    else -> Constants.Video.VIDEO_TYPE_DEFAULT
+                }
             }
+
+            return Constants.Video.VIDEO_TYPE_DEFAULT
         }
 
         /**
@@ -47,21 +52,35 @@ class VideoUtil {
             when (contentType) {
                 Constants.Video.VIDEO_TYPE_M3U8 -> {
                     mediaSource = HlsMediaSource.Factory(mediaDataSourceFactory)
-                        .setPlaylistParserFactory(DefaultHlsPlaylistParserFactory(getOfflineStreamKeys(uri)))
+                        .setPlaylistParserFactory(
+                            DefaultHlsPlaylistParserFactory(
+                                getOfflineStreamKeys(uri)
+                            )
+                        )
                         .createMediaSource(uri)
                     return mediaSource
                 }
 
                 Constants.Video.VIDEO_TYPE_DASH -> {
                     mediaSource = DashMediaSource.Factory(mediaDataSourceFactory)
-                        .setManifestParser(FilteringManifestParser(DashManifestParser(), getOfflineStreamKeys(uri)))
+                        .setManifestParser(
+                            FilteringManifestParser(
+                                DashManifestParser(),
+                                getOfflineStreamKeys(uri)
+                            )
+                        )
                         .createMediaSource(uri)
                     return mediaSource
                 }
 
                 Constants.Video.VIDEO_TYPE_SMOOTH_STREAMING -> {
                     mediaSource = SsMediaSource.Factory(mediaDataSourceFactory)
-                        .setManifestParser(FilteringManifestParser(SsManifestParser(), getOfflineStreamKeys(uri)))
+                        .setManifestParser(
+                            FilteringManifestParser(
+                                SsManifestParser(),
+                                getOfflineStreamKeys(uri)
+                            )
+                        )
                         .createMediaSource(uri)
                     return mediaSource
                 }
@@ -115,7 +134,10 @@ class VideoUtil {
          * Returns a DefaultRenderersFactory based on whether we want to provide extensions for the rendering mode.
          */
         @JvmStatic
-        fun getRenderersFactory(context: Context, noDecoders: Boolean = false): DefaultRenderersFactory {
+        fun getRenderersFactory(
+            context: Context,
+            noDecoders: Boolean = false
+        ): DefaultRenderersFactory {
             val defaultRenderer = DefaultRenderersFactory(context)
 
             if (noDecoders)
