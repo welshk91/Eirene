@@ -55,7 +55,7 @@ class EireneView(
 
     private val progressBar: ProgressBar = rootView.findViewById(R.id.progress)
 
-    private var trackSelector: DefaultTrackSelector? = null
+    private lateinit var trackSelector: DefaultTrackSelector
 
     private var shouldAutoPlay = true
     private var playWhenReady: Boolean = false
@@ -110,7 +110,7 @@ class EireneView(
         player = ExoPlayerFactory.newSimpleInstance(
             context,
             VideoUtil.getRenderersFactory(context),
-            trackSelector!!
+            trackSelector
         )
         playerView.player = player
 
@@ -143,7 +143,6 @@ class EireneView(
             shouldAutoPlay = player!!.playWhenReady
             player!!.release()
             player = null
-            trackSelector = null
         }
     }
 
@@ -227,7 +226,7 @@ class EireneView(
     }
 
     private fun toggleCaptions() {
-        if (trackSelector!!.parameters.getRendererDisabled(C.TRACK_TYPE_VIDEO)) {
+        if (trackSelector.parameters.getRendererDisabled(C.TRACK_TYPE_VIDEO)) {
             enableCaptions()
         } else {
             disableCaptions()
@@ -235,7 +234,7 @@ class EireneView(
     }
 
     private fun disableCaptions() {
-        trackSelector!!.parameters = DefaultTrackSelector.ParametersBuilder()
+        trackSelector.parameters = DefaultTrackSelector.ParametersBuilder()
             .setRendererDisabled(C.TRACK_TYPE_VIDEO, true)
             .build()
 
@@ -243,7 +242,7 @@ class EireneView(
     }
 
     private fun enableCaptions() {
-        trackSelector!!.parameters = DefaultTrackSelector.ParametersBuilder()
+        trackSelector.parameters = DefaultTrackSelector.ParametersBuilder()
             .setRendererDisabled(C.TRACK_TYPE_VIDEO, false)
             .build()
 
