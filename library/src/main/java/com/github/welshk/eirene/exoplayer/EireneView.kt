@@ -49,7 +49,7 @@ class EireneView(
 
 
     private val ccButton: ImageButton by lazy {
-        rootView.findViewById<ImageButton>(R.id.exo_closed_caption_button)
+        rootView.findViewById(R.id.exo_closed_caption_button)
     }
 
 
@@ -114,20 +114,21 @@ class EireneView(
         )
         playerView.player = player
 
-        player!!.addListener(EireneEventListener(playerView, progressBar))
-        player!!.playWhenReady = shouldAutoPlay
+        player?.let {
+            it.addListener(EireneEventListener(playerView, progressBar))
+            it.playWhenReady = shouldAutoPlay
 
+            val haveStartPosition = currentWindow != C.INDEX_UNSET
+            if (haveStartPosition && !it.isCurrentWindowDynamic) {
+                it.seekTo(currentWindow, playbackPosition)
+            } else {
+                it.seekToDefaultPosition()
+            }
 
-        val haveStartPosition = currentWindow != C.INDEX_UNSET
-        if (haveStartPosition && !player!!.isCurrentWindowDynamic) {
-            player!!.seekTo(currentWindow, playbackPosition)
-        } else {
-            player!!.seekToDefaultPosition()
+            it.volume = ApplicationDataRepository.getVolume(context)
+            volumeIncrements = ApplicationDataRepository.getVolumeIncrements(playerView.context)
+            it.prepare(mediaSource, !haveStartPosition, false)
         }
-
-        player!!.volume = ApplicationDataRepository.getVolume(context)
-        volumeIncrements = ApplicationDataRepository.getVolumeIncrements(playerView.context)
-        player!!.prepare(mediaSource, !haveStartPosition, false)
     }
 
     private fun releasePlayer() {
@@ -135,13 +136,13 @@ class EireneView(
         handler.removeCallbacks(fadeOutVolume)
         DeviceUtil.showSystemUi(playerView.context)
 
-        if (player != null) {
-            presenter.saveLastKnownVolume(player!!.volume)
-            presenter.saveLastKnownPosition(player!!.currentPosition)
-            presenter.saveLastKnownCurrentWindow(player!!.currentWindowIndex)
-            presenter.saveLastKnownPlayWhenReady(player!!.playWhenReady)
-            shouldAutoPlay = player!!.playWhenReady
-            player!!.release()
+        player?.let {
+            presenter.saveLastKnownVolume(it.volume)
+            presenter.saveLastKnownPosition(it.currentPosition)
+            presenter.saveLastKnownCurrentWindow(it.currentWindowIndex)
+            presenter.saveLastKnownPlayWhenReady(it.playWhenReady)
+            shouldAutoPlay = it.playWhenReady
+            it.release()
             player = null
         }
     }
@@ -200,29 +201,35 @@ class EireneView(
     }
 
     private fun volumeIncrease() {
-        player!!.volume =
-            if (player!!.volume + volumeIncrements > 1f) 1f else player!!.volume + volumeIncrements
-        volumeIcon.setImageResource(R.drawable.volume_up)
-        volumeChanged()
+        player?.let {
+            it.volume =
+                if (it.volume + volumeIncrements > 1f) 1f else it.volume + volumeIncrements
+            volumeIcon.setImageResource(R.drawable.volume_up)
+            volumeChanged()
+        }
     }
 
     private fun volumeDecrease() {
-        player!!.volume =
-            if (player!!.volume - volumeIncrements < 0f) 0f else player!!.volume - volumeIncrements
+        player?.let {
+            it.volume =
+                if (it.volume - volumeIncrements < 0f) 0f else it.volume - volumeIncrements
 
-        if (FormattingUtil.volumeFormatted(player!!.volume) == 0) {
-            volumeIcon.setImageResource(R.drawable.volume_off)
-        } else {
-            volumeIcon.setImageResource(R.drawable.volume_down)
+            if (FormattingUtil.volumeFormatted(it.volume) == 0) {
+                volumeIcon.setImageResource(R.drawable.volume_off)
+            } else {
+                volumeIcon.setImageResource(R.drawable.volume_down)
+            }
+            volumeChanged()
         }
-        volumeChanged()
     }
 
     private fun volumeChanged() {
-        volumeText.text = (FormattingUtil.volumeFormatted(player!!.volume).toString())
-        volumeView.animate().alpha(1f).duration = VOLUME_ANIMATE_FADE_IN
-        handler.removeCallbacks(fadeOutVolume)
-        handler.postDelayed(fadeOutVolume, VOLUME_ANIMATE_FADE_OUT_DELAY)
+        player?.let {
+            volumeText.text = (FormattingUtil.volumeFormatted(it.volume).toString())
+            volumeView.animate().alpha(1f).duration = VOLUME_ANIMATE_FADE_IN
+            handler.removeCallbacks(fadeOutVolume)
+            handler.postDelayed(fadeOutVolume, VOLUME_ANIMATE_FADE_OUT_DELAY)
+        }
     }
 
     private fun toggleCaptions() {
