@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //This is where we supply a test URL. We actually just use a full path in RetroFit so this isnt used
-        NetworkManager.Instance.initService("http://fakeurl.com")
+        NetworkManager.initService("http://fakeurl.com")
 
         button_activity.setOnClickListener {
             val intent = Intent(this, DemoVideoActivity::class.java)
@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         button_fragment.setOnClickListener {
             val demoVideoFragment = DemoVideoFragment()
-            supportFragmentManager.beginTransaction().replace(R.id.video_frame, demoVideoFragment).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.video_frame, demoVideoFragment)
+                .commit()
             supportFragmentManager.executePendingTransactions()
         }
     }

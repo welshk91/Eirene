@@ -14,6 +14,6 @@ class DemoVideoFragment : EireneFragment() {
     }
 
     override fun getOkHttpClient(): OkHttpClient {
-        return NetworkManager.Instance.getHttpClient()!!.build()
+        return NetworkManager.getHttpClient().build()
     }
 }
