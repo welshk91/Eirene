@@ -39,8 +39,8 @@ class EireneEventListener(
         }
     }
 
-    override fun onPlayerError(error: ExoPlaybackException?) {
-        Log.e(javaClass.simpleName, "Error playing\n" + error!!)
+    override fun onPlayerError(error: ExoPlaybackException) {
+        Log.e(javaClass.simpleName, "$error")
         Toast.makeText(playerView.context, error.message, Toast.LENGTH_LONG).show()
         super.onPlayerError(error)
     }
