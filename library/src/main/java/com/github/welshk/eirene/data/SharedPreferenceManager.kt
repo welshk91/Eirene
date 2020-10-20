@@ -19,22 +19,27 @@ class SharedPreferenceManager(context: Context) {
         set(value) = getEditor().putFloat(VOLUME_INCREMENTS_KEY, value).apply()
 
     private fun getVolumeIncrementsParsing(): Float {
-        var volumePreference: Int
+        val volumePreferenceString =
+            prefs.getString(VOLUME_INCREMENTS_KEY, DEFAULT_VALUE_VOLUME_INCREMENTS)
 
-        return try {
-            volumePreference = Integer.parseInt(
-                prefs.getString(VOLUME_INCREMENTS_KEY, DEFAULT_VALUE_VOLUME_INCREMENTS)!!
-            )
-            volumePreference / 100f
-        } catch (exception: NumberFormatException) {
-            volumePreference = Integer.parseInt(DEFAULT_VALUE_VOLUME_INCREMENTS)
-            volumeIncrements = (volumePreference / 100f)
-            volumePreference / 100f
-        } catch (exception: ClassCastException) {
-            volumePreference = Integer.parseInt(DEFAULT_VALUE_VOLUME_INCREMENTS)
-            volumeIncrements = (volumePreference / 100f)
-            volumePreference / 100f
+        volumePreferenceString?.let {
+            return try {
+                var volumePreference = Integer.parseInt(it)
+                volumePreference / 100f
+            } catch (exception: NumberFormatException) {
+                defaultVolumeIncrement()
+            } catch (exception: ClassCastException) {
+                defaultVolumeIncrement()
+            }
         }
+
+        return defaultVolumeIncrement()
+    }
+
+    private fun defaultVolumeIncrement(): Float {
+        var volumePreference = Integer.parseInt(DEFAULT_VALUE_VOLUME_INCREMENTS)
+        volumeIncrements = (volumePreference / 100f)
+        return volumePreference / 100f
     }
 
     var lastKnownPosition: Long
