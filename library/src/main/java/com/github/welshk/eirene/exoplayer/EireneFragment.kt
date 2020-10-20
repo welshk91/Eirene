@@ -21,7 +21,11 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
     abstract fun getUri(): Uri
 
     @Nullable
-    override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        @Nullable container: ViewGroup?,
+        @Nullable savedInstanceState: Bundle?
+    ): View? {
         val videoView = getRootView(inflater, container)
 
         if (savedInstanceState == null) {
@@ -30,15 +34,17 @@ abstract class EireneFragment : Fragment(), EireneContract.DispatchKeyEvent {
             }
         }
 
-        presenter = EirenePresenter(
-            context,
-            lifecycle,
-            getOkHttpClient(),
-            videoView,
-            getUri(),
-            isClosedCaptionEnabled(),
-            isClosedCaptionToggleEnabled()
-        )
+        context?.let {
+            presenter = EirenePresenter(
+                it,
+                lifecycle,
+                getOkHttpClient(),
+                videoView,
+                getUri(),
+                isClosedCaptionEnabled(),
+                isClosedCaptionToggleEnabled()
+            )
+        }
 
         lifecycle.addObserver(presenter)
         return videoView

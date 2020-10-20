@@ -9,11 +9,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.github.welshk.eirene.data.ApplicationDataRepository
-import com.github.welshk.eirene.data.SharedPreferenceManager
 import okhttp3.OkHttpClient
 
 class EirenePresenter(
-    private val context: Context?,
+    private val context: Context,
     private val lifecycle: Lifecycle,
     okHttpClient: OkHttpClient?,
     rootView: View,
@@ -24,7 +23,7 @@ class EirenePresenter(
     private var view: EireneView =
         EireneView(
             this,
-            context!!,
+            context,
             okHttpClient,
             rootView,
             uri,
@@ -42,51 +41,31 @@ class EirenePresenter(
     }
 
     override fun saveLastKnownVolume(volume: Float) {
-        context?.let {
-            ApplicationDataRepository.setVolume(context, volume)
-        }
+        ApplicationDataRepository.setVolume(context, volume)
     }
 
     override fun saveLastKnownPosition(position: Long) {
-        context?.let {
-            ApplicationDataRepository.setLastKnownPosition(it, position)
-        }
+        ApplicationDataRepository.setLastKnownPosition(context, position)
     }
 
     override fun saveLastKnownPlayWhenReady(playWhenReady: Boolean) {
-        context?.let {
-            ApplicationDataRepository.setLastKnownPlayWhenReady(it, playWhenReady)
-        }
+        ApplicationDataRepository.setLastKnownPlayWhenReady(context, playWhenReady)
     }
 
     override fun saveLastKnownCurrentWindow(currentWindow: Int) {
-        context?.let {
-            ApplicationDataRepository.setLastKnownCurrentWindow(it, currentWindow)
-        }
+        ApplicationDataRepository.setLastKnownCurrentWindow(context, currentWindow)
     }
 
     override fun loadLastKnownPosition(): Long {
-        return if (context != null) {
-            ApplicationDataRepository.getLastKnownPosition(context)
-        } else {
-            SharedPreferenceManager.DEFAULT_VALUE_POSITION
-        }
+        return ApplicationDataRepository.getLastKnownPosition(context)
     }
 
     override fun loadLastKnownPlayWhenReady(): Boolean {
-        return if (context != null) {
-            ApplicationDataRepository.getLastKnownPlayWhenReady(context)
-        } else {
-            SharedPreferenceManager.DEFAULT_VALUE_PLAY_WHEN_READY
-        }
+        return ApplicationDataRepository.getLastKnownPlayWhenReady(context)
     }
 
     override fun loadLastKnownCurrentWindow(): Int {
-        return if (context != null) {
-            ApplicationDataRepository.getLastKnownCurrentWindow(context)
-        } else {
-            SharedPreferenceManager.DEFAULT_VALUE_CURRENT_WINDOW
-        }
+        return ApplicationDataRepository.getLastKnownCurrentWindow(context)
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {

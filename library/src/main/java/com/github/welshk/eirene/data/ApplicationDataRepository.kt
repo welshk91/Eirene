@@ -68,7 +68,9 @@ object ApplicationDataRepository {
     fun setPlayerDefaults(context: Context) {
         val preferenceManager = SharedPreferenceManager(context)
         preferenceManager.lastKnownPosition = SharedPreferenceManager.DEFAULT_VALUE_POSITION
-        preferenceManager.lastKnownPlayWhenReady = SharedPreferenceManager.DEFAULT_VALUE_PLAY_WHEN_READY
-        preferenceManager.lastKnownCurrentWindow = SharedPreferenceManager.DEFAULT_VALUE_CURRENT_WINDOW
+        preferenceManager.lastKnownPlayWhenReady =
+            SharedPreferenceManager.DEFAULT_VALUE_PLAY_WHEN_READY
+        preferenceManager.lastKnownCurrentWindow =
+            SharedPreferenceManager.DEFAULT_VALUE_CURRENT_WINDOW
     }
 }
