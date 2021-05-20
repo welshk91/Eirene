@@ -13,7 +13,7 @@ import com.github.welshk.eirene.utils.DeviceUtil
 class EireneEventListener(
     private val playerView: PlayerView,
     private val progressBar: ProgressBar
-) : Player.DefaultEventListener() {
+) : Player.EventListener {
 
     override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
         if (!playWhenReady) {

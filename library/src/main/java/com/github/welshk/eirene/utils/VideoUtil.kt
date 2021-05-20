@@ -3,10 +3,11 @@ package com.github.welshk.eirene.utils
 import android.content.Context
 import android.net.Uri
 import com.google.android.exoplayer2.DefaultRenderersFactory
+import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.ext.okhttp.OkHttpDataSourceFactory
 import com.google.android.exoplayer2.offline.FilteringManifestParser
 import com.google.android.exoplayer2.offline.StreamKey
-import com.google.android.exoplayer2.source.ExtractorMediaSource
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.source.dash.manifest.DashManifestParser
@@ -54,10 +55,10 @@ class VideoUtil {
                     mediaSource = HlsMediaSource.Factory(mediaDataSourceFactory)
                         .setPlaylistParserFactory(
                             DefaultHlsPlaylistParserFactory(
-                                getOfflineStreamKeys(uri)
+                                //getOfflineStreamKeys(uri)
                             )
                         )
-                        .createMediaSource(uri)
+                        .createMediaSource(MediaItem.fromUri(uri))
                     return mediaSource
                 }
 
@@ -69,7 +70,7 @@ class VideoUtil {
                                 getOfflineStreamKeys(uri)
                             )
                         )
-                        .createMediaSource(uri)
+                        .createMediaSource(MediaItem.fromUri(uri))
                     return mediaSource
                 }
 
@@ -81,13 +82,13 @@ class VideoUtil {
                                 getOfflineStreamKeys(uri)
                             )
                         )
-                        .createMediaSource(uri)
+                        .createMediaSource(MediaItem.fromUri(uri))
                     return mediaSource
                 }
 
                 Constants.Video.VIDEO_TYPE_DEFAULT -> {
-                    mediaSource = ExtractorMediaSource.Factory(mediaDataSourceFactory)
-                        .createMediaSource(uri)
+                    mediaSource = DefaultMediaSourceFactory(mediaDataSourceFactory)
+                        .createMediaSource(MediaItem.fromUri(uri))
                     return mediaSource
                 }
 

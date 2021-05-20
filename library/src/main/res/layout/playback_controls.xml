@@ -17,7 +17,7 @@
 
     <ImageButton
         android:id="@id/exo_shuffle"
-        style="@style/ExoMediaButton.Shuffle" />
+        style="@style/ExoStyledControls.Button.Bottom.Shuffle" />
 
     <ImageButton
         android:id="@id/exo_repeat_toggle"

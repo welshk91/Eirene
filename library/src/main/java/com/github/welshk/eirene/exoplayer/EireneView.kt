@@ -18,7 +18,6 @@ import com.github.welshk.eirene.utils.DeviceUtil
 import com.github.welshk.eirene.utils.FormattingUtil
 import com.github.welshk.eirene.utils.VideoUtil
 import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
@@ -107,11 +106,11 @@ class EireneView(
 
         val mediaSource = VideoUtil.getMediaSource(mediaDataSourceFactory, uri)
 
-        player = ExoPlayerFactory.newSimpleInstance(
-            context,
-            VideoUtil.getRenderersFactory(context),
-            trackSelector
-        )
+        player = SimpleExoPlayer.Builder(context, VideoUtil.getRenderersFactory(context))
+            //.setMediaSourceFactory(mediaSource)
+            .setTrackSelector(trackSelector)
+            .build()
+
         playerView.player = player
 
         player?.let {
