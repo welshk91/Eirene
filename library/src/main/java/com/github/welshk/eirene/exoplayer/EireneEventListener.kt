@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import com.github.welshk.eirene.utils.DeviceUtil
+import com.google.android.exoplayer2.PlaybackException
 
 
 class EireneEventListener(
@@ -39,7 +40,7 @@ class EireneEventListener(
         }
     }
 
-    override fun onPlayerError(error: ExoPlaybackException) {
+    override fun onPlayerError(error: PlaybackException) {
         Log.e(javaClass.simpleName, "$error")
         Toast.makeText(playerView.context, error.message, Toast.LENGTH_LONG).show()
         super.onPlayerError(error)
