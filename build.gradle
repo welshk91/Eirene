@@ -2,7 +2,7 @@
 
 buildscript {
     ext.multidex_version = '2.0.1'
-    ext.kotlin_version = '1.6.10'
+    ext.kotlin_version = '1.6.21'
     ext.core_ktx_version = '1.7.0'
     ext.material_version = '1.6.0-alpha02'
     ext.exoplayer_version = '2.16.1'
@@ -18,7 +18,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.android.tools.build:gradle:7.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         // NOTE: Do not place your application dependencies here; they belong
